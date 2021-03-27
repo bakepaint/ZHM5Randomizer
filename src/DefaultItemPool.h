@@ -25,8 +25,6 @@ public:
 
   void get(std::vector<const RepositoryID *> &out,
            bool (Item::*fn)() const) const;
-  void getL(std::vector<const RepositoryID *> &out,
-                             std::function<bool(const Item &)> fn) const;
 
   void getPosition(std::vector<int> &out, bool (Item::*fn)() const) const;
   size_t getCount(bool (Item::*fn)() const) const;

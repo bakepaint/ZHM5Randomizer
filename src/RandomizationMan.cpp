@@ -15,6 +15,10 @@
 
 #include "spdlog/spdlog.h"
 
+#ifdef DEFAULTPOOLEXPORT
+#include "DefaultPoolExport.h"
+#endif
+
 
 namespace hitman_randomizer {
 
@@ -128,9 +132,9 @@ void RandomizationMan::registerRandomizer(RandomizerSlot slot,
 
 void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
   auto scenario = Scenario::from_SceneInitParams(*sip);
-  if (scenario.string() == "NONE") {
-    return;
-  }
+#ifdef DEFAULTPOOLEXPORT
+  DefaultPoolExport::loadScenario(scenario);
+#endif
   
   log::info("Loading Scenario: {}", scenario.string());
 
@@ -142,6 +146,14 @@ void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
   RNG::inst().seed(seed);
 
   auto default_pool = default_item_pool_repo->getDefaultPool(scenario);
+#ifdef DEFAULTPOOLEXPORT
+  world_inventory_randomizer =
+      std::make_unique<Randomizer>(new IdentityRandomization);
+  world_inventory_randomizer->initialize(scenario, default_pool);
+  npc_item_randomizer->disable();
+  hero_inventory_randomizer->disable();
+  stash_item_randomizer->disable();
+#else
   if (default_pool != nullptr) {
     world_inventory_randomizer->initialize(scenario, default_pool);
     npc_item_randomizer->initialize(scenario, default_pool);
@@ -153,7 +165,7 @@ void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
     hero_inventory_randomizer->disable();
     stash_item_randomizer->disable();
   }
-  log::info("RandomizationMan::initializeRandomizers complete.");
+#endif
 }
 
 }  // namespace hitman_randomizer
