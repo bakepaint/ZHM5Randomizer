@@ -1,4 +1,7 @@
 #include "Offsets.h"
+#include "SigScanner.h"
+#include "Signatures.h"
+#include "Version.h"
 
 #include <Windows.h>
 
@@ -21,22 +24,6 @@ void* getOffsetByName(const std::string& name) {
              Signatures::locators[name].offset;
   if (off < 0) offsetSearchFailed();
   return reinterpret_cast<void*>(off);
-}
-
-GameOffsets::GameVersion GameOffsets::getVersion() const {
-  void *image_base = (void *)0x140000000;
-  auto dos_header = *reinterpret_cast<IMAGE_DOS_HEADER *>(image_base);
-  auto nt_header = *reinterpret_cast<IMAGE_NT_HEADERS *>((uintptr_t)image_base +
-                                                         dos_header.e_lfanew);
-  int timestamp = nt_header.FileHeader.TimeDateStamp;
-  if (timestamp == 0x5EE9D095) {
-    return GameVersion::DX12;
-  } else if (timestamp == 0x5F8D57CA) {
-    return GameVersion::DX11;
-  } else {
-    spdlog::warn("Unknown timestamp offset {} encountered", timestamp);
-    return GameVersion::UNK;
-  }
 }
 
 // Check IDA databases for notes about how to update offsets.
@@ -72,6 +59,7 @@ GameOffsets::GameOffsets() {
           getOffsetByName("PushHeroInventoryDetour");
       offsets.pPushStashInventoryDetour =
           getOffsetByName("PushStashInventoryDetour");
+
       // Scan for ZEntitySceneContext_LoadScene function and then for it's
       // vtable entry.
       auto ZEntitySceneContext_LoadScene =

@@ -12,7 +12,7 @@ class DefaultItemPoolRepository {
   std::unordered_map<Scenario, std::unique_ptr<DefaultItemPool>> item_pools;
 
  public:
-  DefaultItemPoolRepository(std::string path);
+  DefaultItemPoolRepository(std::string path,std::shared_ptr<RandomDrawRepository> repo);
 
   DefaultItemPool* getDefaultPool(Scenario);
 };

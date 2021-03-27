@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <windows.h>
 
+namespace hitman_randomizer {
+
 GameVersion getVersion() {
     // Hitman 3
     TCHAR szExeFileName[MAX_PATH];
@@ -24,4 +26,6 @@ GameVersion getVersion() {
         return GameVersion::H2DX11; // Hitman 2 DX11
     else
         return GameVersion::UNK;
+}
+
 }

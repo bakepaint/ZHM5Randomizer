@@ -25,7 +25,7 @@ void CustomWorldStrategy::initialize(
   int default_item_pool_size = default_pool->size();
   std::vector<const RepositoryID*> item_pool;
 
-  repo.AllMatches(item_pool, default_pool->size(), [this](Item it) {
+  repo_->AllMatches(item_pool, default_pool->size(), [this](Item it) {
     return config_->custom_world_rules_.ShouldPermit(it);
   });
 
@@ -43,10 +43,10 @@ void CustomWorldStrategy::initialize(
     if (std::find(essential_items.begin(), essential_items.end(), i) != essential_items.end()) {
       RepositoryID& original_item = RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
-      item_queue.push(repo.getStablePointer(RepositoryID(original_item.toString())));
+      item_queue.push(repo_->getStablePointer(RepositoryID(original_item.toString())));
     } else {
       auto result = *select_randomly(item_pool.begin(), item_pool.end());
-      item_queue.push(repo.getStablePointer(RepositoryID(result->toString())));
+      item_queue.push(repo_->getStablePointer(RepositoryID(result->toString())));
     }
   }
 
@@ -55,7 +55,7 @@ void CustomWorldStrategy::initialize(
 
 void CustomNPCStrategy::initialize(Scenario scen,
                                    const DefaultItemPool *const default_pool) {
-  repo.AllMatches(item_pool_, default_pool->size(), [this](Item it) {
+  repo_->AllMatches(item_pool_, default_pool->size(), [this](Item it) {
     return config_->custom_npc_rules_.ShouldPermit(it);
   });
   if (item_pool_.size() == 0) {
@@ -67,15 +67,15 @@ void CustomNPCStrategy::initialize(Scenario scen,
 
 const RepositoryID *
 CustomNPCStrategy::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info("CustomNPCStrategy::randomize: skipped (not in repo) [{}]", in_out_ID->toString());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   if (in_item->isEssential()) {
-    log::info("CustomNPCStrategy::randomize: skipped (essential) [{}]", repo.getItem(*in_out_ID)->string());
+    log::info("CustomNPCStrategy::randomize: skipped (essential) [{}]", repo_->getItem(*in_out_ID)->string());
     return in_out_ID;
   }
   auto result = *select_randomly(item_pool_.begin(), item_pool_.end());

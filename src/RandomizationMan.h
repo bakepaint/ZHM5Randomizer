@@ -44,6 +44,7 @@ class RandomizationMan {
   void configureRandomizerCollection();
 
   std::shared_ptr<hitman_randomizer::Config> config_;
+  std::shared_ptr<RandomDrawRepository> repo_;
 
  public:
   RandomizationMan(std::shared_ptr<hitman_randomizer::Config> config);

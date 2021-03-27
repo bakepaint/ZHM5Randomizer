@@ -13,21 +13,21 @@
 
 namespace hitman_randomizer {
 RandomizationStrategy::RandomizationStrategy(
-    std::shared_ptr<hitman_randomizer::Config> config)
-    : repo(RandomDrawRepository::inst()), config_(config) {}
+    std::shared_ptr<Config> config, std::shared_ptr<RandomDrawRepository> repo)
+    : repo_(repo), config_(config) {}
 
 void RandomizationStrategy::initialize(Scenario, const DefaultItemPool *const) {
 }
 
 const RepositoryID *
 DefaultWorldRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (repo.contains(*in_out_ID) && item_queue.size()) {
+  if (repo_->contains(*in_out_ID) && item_queue.size()) {
     const RepositoryID *id = item_queue.front();
     item_queue.pop();
     // log::info(
     //     "DefaultWorldRandomization::randomize: {}: {} -> {}",
-    //     static_cast<int>(item_queue.size()), repo.getItem(*in_out_ID)->string(),
-    //     repo.getItem(*id)->string());
+    //     static_cast<int>(item_queue.size()), repo_->getItem(*in_out_ID)->string(),
+    //     repo_->getItem(*id)->string());
     return id;
   } else {
     if (!item_queue.size()) {
@@ -55,7 +55,7 @@ void DefaultWorldRandomization::initialize(
                                    new_item_pool.size() -
                                    default_item_pool_weapon_count;
 
-  repo.getRandom(new_item_pool, random_item_count,
+  repo_->getRandom(new_item_pool, random_item_count,
                  &Item::isItemAcceptableDefaultItem);
 
   // Shuffle item pool
@@ -64,7 +64,7 @@ void DefaultWorldRandomization::initialize(
 
   // Insert weapons
   std::vector<const RepositoryID *> weapons;
-  repo.getRandom(weapons, default_item_pool_weapon_count, &Item::isWeapon);
+  repo_->getRandom(weapons, default_item_pool_weapon_count, &Item::isWeapon);
 
   std::vector<int> weapon_slots;
   default_pool->getPosition(weapon_slots, &Item::isWeapon);
@@ -105,30 +105,30 @@ void ActionWorldRandomization::initialize(
   for (int i = 0; i < default_item_pool_size; i++) {
     auto found = std::find(weapon_slots.begin(), weapon_slots.end(), i);
     if (found != weapon_slots.end()) {
-      item_queue.push(repo.getStablePointer(*repo.getRandom(&Item::isWeapon)));
+      item_queue.push(repo_->getStablePointer(*repo_->getRandom(&Item::isWeapon)));
     } else if (std::find(essential_items.begin(), essential_items.end(), i) !=
                essential_items.end()) {
       RepositoryID &original_item =
           RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
       item_queue.push(
-          repo.getStablePointer(RepositoryID(original_item.toString())));
+          repo_->getStablePointer(RepositoryID(original_item.toString())));
     } else {
       int j = rand() % 100;
       if (j < 10) {
-        item_queue.push(repo.getStablePointer(*repo.getRandom(&Item::isCoin)));
+        item_queue.push(repo_->getStablePointer(*repo_->getRandom(&Item::isCoin)));
       } else if (j >= 10 && j < 50) {
         item_queue.push(
-            repo.getStablePointer(*repo.getRandom(&Item::isExplosive)));
+            repo_->getStablePointer(*repo_->getRandom(&Item::isExplosive)));
       } else if (j >= 50 && j < 90) {
         item_queue.push(
-            repo.getStablePointer(*repo.getRandom(&Item::isWeapon)));
+            repo_->getStablePointer(*repo_->getRandom(&Item::isWeapon)));
       } else {
         RepositoryID &original_item =
             RepositoryID("00000000-0000-0000-0000-000000000000");
         default_pool->getIdAt(original_item, i);
         item_queue.push(
-            repo.getStablePointer(RepositoryID(original_item.toString())));
+            repo_->getStablePointer(RepositoryID(original_item.toString())));
       }
     }
   }
@@ -154,7 +154,7 @@ void OopsAllExplosivesWorldInventoryRandomization::initialize(
                                    new_item_pool.size() -
                                    default_item_pool_weapon_count;
 
-  repo.getRandom(new_item_pool, random_item_count,
+  repo_->getRandom(new_item_pool, random_item_count,
                  [](Item it) { return it.isExplosive(); });
 
   // Shuffle item pool
@@ -163,7 +163,7 @@ void OopsAllExplosivesWorldInventoryRandomization::initialize(
 
   // Insert weapons
   std::vector<const RepositoryID *> weapons;
-  repo.getRandom(weapons, default_item_pool_weapon_count, &Item::isExplosive);
+  repo_->getRandom(weapons, default_item_pool_weapon_count, &Item::isExplosive);
 
   std::vector<int> weapon_slots;
   default_pool->getPosition(weapon_slots, &Item::isWeapon);
@@ -222,7 +222,7 @@ void TreasureHuntWorldInventoryRandomization::initialize(
         item = bust;
       }
     }
-    item_queue.push(repo.getStablePointer(item));
+    item_queue.push(repo_->getStablePointer(item));
   }
 }
 
@@ -242,9 +242,9 @@ void NoItemsWorldInventoryRandomization::initialize(
   default_pool->getPosition(weapon_slots, &Item::isWeapon);
 
   std::vector<const RepositoryID *> new_item_pool;
-  auto pistol = repo.getStablePointer(
+  auto pistol = repo_->getStablePointer(
       RepositoryID("1e11fbea-cd51-48bf-8316-a050772d6135"));
-  auto coin = repo.getStablePointer(
+  auto coin = repo_->getStablePointer(
       RepositoryID("dda002e9-02b1-4208-82a5-cf059f3c79cf"));
 
   for (int i = 0; i < default_pool->size(); i++) {
@@ -258,7 +258,7 @@ void NoItemsWorldInventoryRandomization::initialize(
       default_pool->getIdAt(original_item, i);
       new_item_pool.insert(
           new_item_pool.begin() + i,
-          repo.getStablePointer(RepositoryID(original_item.toString())));
+          repo_->getStablePointer(RepositoryID(original_item.toString())));
     } else {
       new_item_pool.insert(new_item_pool.begin() + i, coin);
     }
@@ -270,46 +270,46 @@ void NoItemsWorldInventoryRandomization::initialize(
 
 const RepositoryID *
 UnlimitedNPCRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "DefaultNPCRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   // Only NPC weapons are randomized here, return original item if item isn't a
   // weapon
   if (!in_item->isWeapon()) {
     log::info(
         "DefaultNPCRandomization::randomize: skipped (not a weapon) [{}]",
-        repo.getItem(*in_out_ID)->string().c_str());
+        repo_->getItem(*in_out_ID)->string().c_str());
     return in_out_ID;
   }
 
-  auto randomized_item = repo.getRandom(&Item::isWeapon);
+  auto randomized_item = repo_->getRandom(&Item::isWeapon);
   return randomized_item;
 }
 
 // TODO: factor this fn
 const RepositoryID *
 DefaultNPCRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "DefaultNPCRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   // Only NPC weapons are randomized here, return original item if item isn't a
   // weapon
   if (!in_item->isWeapon()) {
     // log::info(
     //     "DefaultNPCRandomization::randomize: skipped (not a weapon) [{}]",
-    //     repo.getItem(*in_out_ID)->string().c_str());
+    //     repo_->getItem(*in_out_ID)->string().c_str());
     return in_out_ID;
   }
 
@@ -318,57 +318,57 @@ DefaultNPCRandomization::randomize(const RepositoryID *in_out_ID) {
     (item.isItemAcceptableDefaultItem() || item.isWeapon());
   };
 
-  auto randomized_item = repo.getRandom(sameType);
+  auto randomized_item = repo_->getRandom(sameType);
   log::info("DefaultNPCRandomization::randomize: {} -> {}",
-               repo.getItem(*in_out_ID)->string().c_str(),
-               repo.getItem(*randomized_item)->string().c_str());
+               repo_->getItem(*in_out_ID)->string().c_str(),
+               repo_->getItem(*randomized_item)->string().c_str());
 
   return randomized_item;
 }
 
 const RepositoryID *
 DefaultHeroRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "DefaultHeroRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   auto sameType = [&in_item](const Item &item) {
     return in_item->getType() == item.getType() &&
     (item.isItemAcceptableDefaultItem() || item.isWeapon());
   };
 
-  auto randomized_item = repo.getRandom(sameType);
+  auto randomized_item = repo_->getRandom(sameType);
   log::info("DefaultHeroRandomization::randomize: {} -> {}",
-               repo.getItem(*in_out_ID)->string().c_str(),
-               repo.getItem(*randomized_item)->string().c_str());
+               repo_->getItem(*in_out_ID)->string().c_str(),
+               repo_->getItem(*randomized_item)->string().c_str());
 
   return randomized_item;
 };
 
 const RepositoryID *
 DefaultStashRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "DefaultStashRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   auto sameType = [&in_item](const Item &item) {
     return in_item->getType() == item.getType() && item.isItemAcceptableDefaultItem();
   };
 
-  auto randomized_item = repo.getRandom(sameType);
+  auto randomized_item = repo_->getRandom(sameType);
   log::info("DefaultStashRandomization::randomize: {} -> {}",
-               repo.getItem(*in_out_ID)->string().c_str(),
-               repo.getItem(*randomized_item)->string().c_str());
+               repo_->getItem(*in_out_ID)->string().c_str(),
+               repo_->getItem(*randomized_item)->string().c_str());
 
   return randomized_item;
 };
@@ -400,18 +400,18 @@ IdentityRandomization::randomize(const RepositoryID *in_out_ID) {
 
 const RepositoryID *
 HardNPCRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "DefaultNPCRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   // flash grenades -> frag grenades
   if ((*in_out_ID == RepositoryID("042fae7b-fe9e-4a83-ac7b-5c914a71b2ca"))) {
-    return repo.getStablePointer(
+    return repo_->getStablePointer(
         RepositoryID("3f9cf03f-b84f-4419-b831-4704cff9775c"));
   }
 
@@ -420,19 +420,19 @@ HardNPCRandomization::randomize(const RepositoryID *in_out_ID) {
   if (!in_item->isWeapon()) {
     log::info(
         "DefaultNPCRandomization::randomize: skipped (not a weapon) [{}]",
-        repo.getItem(*in_out_ID)->string().c_str());
+        repo_->getItem(*in_out_ID)->string().c_str());
     return in_out_ID;
   }
 
-  auto shotgun = repo.getStablePointer(
+  auto shotgun = repo_->getStablePointer(
       RepositoryID("901a3b51-51a0-4236-bdf2-23d20696b358"));
-  auto rifle = repo.getStablePointer(
+  auto rifle = repo_->getStablePointer(
       RepositoryID("d8aa6eba-0cb7-4ed4-ab99-975f2793d731"));
-  auto sniper = repo.getStablePointer(
+  auto sniper = repo_->getStablePointer(
       RepositoryID("43d15bea-d282-4a91-b625-8b7ba85c0ad5"));
-  auto pistol = repo.getStablePointer(
+  auto pistol = repo_->getStablePointer(
       RepositoryID("304fd49f-0624-4691-8506-149a4b16808e"));
-  auto smg = repo.getStablePointer(
+  auto smg = repo_->getStablePointer(
       RepositoryID("e206ed81-0559-4289-9fec-e6a3e9d4ee7c"));
 
   if (in_item->isPistol()) {
@@ -456,44 +456,44 @@ HardNPCRandomization::randomize(const RepositoryID *in_out_ID) {
 
 const RepositoryID *
 SleepyNPCRandomization::randomize(const RepositoryID *in_out_ID) {
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "SleepyNPCRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   if (!in_item->isWeapon()) {
     return in_out_ID;
   }
 
-  return repo.getStablePointer(
+  return repo_->getStablePointer(
       RepositoryID("6c3854f6-dbe0-410c-bd01-ddc35b402d0c"));
 }
 
 const RepositoryID *
 ChainReactionNPCRandomization::randomize(const RepositoryID *in_out_ID) {
-  auto shotgun1 = repo.getStablePointer(
+  auto shotgun1 = repo_->getStablePointer(
       RepositoryID("0af419f5-e6d3-488d-b133-6ce0964b0770"));
-  auto shotgun2 = repo.getStablePointer(
+  auto shotgun2 = repo_->getStablePointer(
       RepositoryID("d5728a0f-fe8d-4e2d-9350-03cf4243c98e"));
-  auto rifle1 = repo.getStablePointer(
+  auto rifle1 = repo_->getStablePointer(
       RepositoryID("6e4afb04-417e-4cfc-aaa2-43f3ecca9037"));
-  auto rifle2 = repo.getStablePointer(
+  auto rifle2 = repo_->getStablePointer(
       RepositoryID("e206ed81-0559-4289-9fec-e6a3e9d4ee7c"));
-  auto sniper = repo.getStablePointer(
+  auto sniper = repo_->getStablePointer(
       RepositoryID("370580fc-7fcf-47f8-b994-cebd279f69f9"));
 
-  if (!repo.contains(*in_out_ID)) {
+  if (!repo_->contains(*in_out_ID)) {
     log::info(
         "ChainReactionNPCRandomization::randomize: skipped (not in repo) [{}]",
         in_out_ID->toString().c_str());
     return in_out_ID;
   }
 
-  auto in_item = repo.getItem(*in_out_ID);
+  auto in_item = repo_->getItem(*in_out_ID);
 
   if (!in_item->isWeapon()) {
     return in_out_ID;
@@ -501,17 +501,17 @@ ChainReactionNPCRandomization::randomize(const RepositoryID *in_out_ID) {
 
   // flash grenades -> octane booster
   if ((*in_out_ID == RepositoryID("042fae7b-fe9e-4a83-ac7b-5c914a71b2ca")))
-    return repo.getStablePointer(
+    return repo_->getStablePointer(
         RepositoryID("c82fefa7-febe-46c8-90ec-c945fbef0cb4"));
 
   int i = rand() % 10;
   if (i >= 0 && i < 4) {
     // Cure coin
-    return repo.getStablePointer(
+    return repo_->getStablePointer(
         RepositoryID("6c3854f6-dbe0-410c-bd01-ddc35b402d0c"));
   } else if (i >= 4 && i < 8) {
     // Octane booster
-    return repo.getStablePointer(
+    return repo_->getStablePointer(
         RepositoryID("c82fefa7-febe-46c8-90ec-c945fbef0cb4"));
   } else {
     int i = rand() % 100;

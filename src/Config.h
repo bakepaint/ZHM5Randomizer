@@ -113,6 +113,10 @@ public:
   CustomRules custom_world_rules_;
   CustomRules custom_npc_rules_;
 
+  std::string BaseDirectory() const {
+    return base_directory_;
+  }
+
 private:
   std::string base_directory_;
   std::string world_inventory_randomizer_;

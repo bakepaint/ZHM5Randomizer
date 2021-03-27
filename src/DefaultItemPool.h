@@ -4,6 +4,7 @@
 
 #include "..\thirdparty\json.hpp"
 #include "RepositoryID.h"
+#include "Repository.h"
 
 using json = nlohmann::json;
 
@@ -17,9 +18,10 @@ class Item;
 class DefaultItemPool {
 private:
   std::vector<RepositoryID> ids;
+  std::shared_ptr<RandomDrawRepository> repo_;
 
 public:
-  DefaultItemPool(json &json);
+  DefaultItemPool(json &json, std::shared_ptr<RandomDrawRepository> repo);
 
   size_t size() const;
 
