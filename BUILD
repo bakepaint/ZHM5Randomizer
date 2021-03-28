@@ -10,6 +10,7 @@ cc_binary(
         "**/*.hpp",
     ]),
     copts = [
+        "/std:c++17",
         "/DCOMPILING_DLL",
         "-Ithird_party",
     ],
@@ -29,7 +30,7 @@ cc_binary(
     linkshared = 1,
     deps = [
         "//third_party/tomlpp",
-        "@spdlog",
         "@com_google_absl//absl/memory",
+        "@spdlog",
     ],
 )

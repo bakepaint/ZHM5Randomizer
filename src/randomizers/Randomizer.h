@@ -15,12 +15,11 @@ class DefaultItemPool;
 
 class RandomizationStrategy {
  protected:
-  RandomDrawRepository& repo;
-
-  std::shared_ptr<hitman_randomizer::Config> config_;
+  std::shared_ptr<Config> config_;
+  std::shared_ptr<RandomDrawRepository> repo_;
 
  public:
-  RandomizationStrategy(std::shared_ptr<hitman_randomizer::Config> config);
+  RandomizationStrategy(std::shared_ptr<Config> config, std::shared_ptr<RandomDrawRepository> repo);
 
   // Takes Repository ID and returns a new ID according to the internal
   // Randomization strategy Item IDs that don't have a corresponding item
@@ -36,7 +35,7 @@ class RandomizationStrategy {
 
 class IdentityRandomization : public RandomizationStrategy {
  public:
-  IdentityRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+  IdentityRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
@@ -48,7 +47,7 @@ class DefaultWorldRandomization : public RandomizationStrategy {
   std::queue<const RepositoryID*> item_queue;
 
  public:
- DefaultWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ DefaultWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override;
   void initialize(Scenario scen,
                   const DefaultItemPool* const default_pool) override;
@@ -57,7 +56,7 @@ class DefaultWorldRandomization : public RandomizationStrategy {
 class OopsAllExplosivesWorldInventoryRandomization
     : public DefaultWorldRandomization {
  public:
- OopsAllExplosivesWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config) : DefaultWorldRandomization(config) {}
+ OopsAllExplosivesWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool* const default_pool) override final;
@@ -66,7 +65,7 @@ class OopsAllExplosivesWorldInventoryRandomization
 class TreasureHuntWorldInventoryRandomization
     : public DefaultWorldRandomization {
  public:
- TreasureHuntWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config) : DefaultWorldRandomization(config) {}
+ TreasureHuntWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool* const default_pool) override final;
@@ -74,7 +73,7 @@ class TreasureHuntWorldInventoryRandomization
 
 class NoItemsWorldInventoryRandomization : public DefaultWorldRandomization {
  public:
- NoItemsWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config) : DefaultWorldRandomization(config) {}
+ NoItemsWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool* const default_pool) override final;
@@ -82,7 +81,7 @@ class NoItemsWorldInventoryRandomization : public DefaultWorldRandomization {
 
 class ActionWorldRandomization : public DefaultWorldRandomization {
  public:
- ActionWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config) : DefaultWorldRandomization(config) {}
+ ActionWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool* const default_pool) override final;
@@ -91,7 +90,7 @@ class ActionWorldRandomization : public DefaultWorldRandomization {
 
 class DefaultNPCRandomization : public RandomizationStrategy {
  public:
- DefaultNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ DefaultNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
@@ -105,13 +104,13 @@ distraction, poison, Container and smg.
 */
 class DefaultHeroRandomization : public RandomizationStrategy {
  public:
- DefaultHeroRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ DefaultHeroRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
 class DefaultStashRandomization : public RandomizationStrategy {
  public:
- DefaultStashRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ DefaultStashRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
@@ -119,27 +118,27 @@ class DefaultStashRandomization : public RandomizationStrategy {
 // grenades with frag grenades.
 class HardNPCRandomization : public RandomizationStrategy {
  public:
- HardNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ HardNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
 class UnlimitedNPCRandomization : public RandomizationStrategy {
  public:
- UnlimitedNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ UnlimitedNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
 
 class SleepyNPCRandomization : public RandomizationStrategy {
  public:
- SleepyNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ SleepyNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
   bool exception_assigned;
 };
 
 class ChainReactionNPCRandomization : public RandomizationStrategy {
  public:
- ChainReactionNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config) : RandomizationStrategy(config) {}
+ ChainReactionNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 

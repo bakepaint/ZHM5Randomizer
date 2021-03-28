@@ -1,4 +1,5 @@
 #pragma once
+#include "Version.h"
 
 
 namespace hitman_randomizer {
@@ -17,10 +18,6 @@ class GameOffsets {
   } offsets;
 
   GameOffsets();
-
-  enum class GameVersion { DX11, DX12, UNK };
-
-  GameVersion getVersion() const;
 
  public:
   static const GameOffsets* instance();

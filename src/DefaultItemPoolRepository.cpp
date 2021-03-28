@@ -1,21 +1,29 @@
 #include "DefaultItemPoolRepository.h"
 
+#include "Console.h"
+
 #include <memory>
 #include <fstream>
 
 namespace hitman_randomizer {
 
-DefaultItemPoolRepository::DefaultItemPoolRepository(std::string path) {
+DefaultItemPoolRepository::DefaultItemPoolRepository(std::string path,std::shared_ptr<RandomDrawRepository> repo) {
   std::ifstream ifs(path);
+
+  if (!ifs.is_open()) {
+      log::info("Cannot find default item pool repository at {}", path);
+  }
 
   json repository_json;
   ifs >> repository_json;
   ifs.close();
 
   for (const auto& it : repository_json.items()) {
-    Scenario scen = Scenario::from_string(it.key());
-    item_pools[scen] = std::make_unique<DefaultItemPool>(it.value());
+    auto key = std::stoull(it.key(), nullptr, 0x10);
+    item_pools[key] = std::make_unique<DefaultItemPool>(it.value(), repo);
   }
+
+  log::info("Default item pool repository created.");
 }
 
 DefaultItemPool* DefaultItemPoolRepository::getDefaultPool(Scenario scen) {

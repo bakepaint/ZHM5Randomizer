@@ -28,8 +28,8 @@ Iter select_randomly(Iter start, Iter end) {
 
 class CustomWorldStrategy : public DefaultWorldRandomization {
 public:
-  CustomWorldStrategy(std::shared_ptr<hitman_randomizer::Config> config)
-      : DefaultWorldRandomization(config) {}
+  CustomWorldStrategy(std::shared_ptr<hitman_randomizer::Config> config, std::shared_ptr<RandomDrawRepository> repo)
+      : DefaultWorldRandomization(config, repo) {}
   const RepositoryID *randomize(const RepositoryID *in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool *const default_pool) override final;
@@ -37,8 +37,8 @@ public:
 
 class CustomNPCStrategy : public RandomizationStrategy {
 public:
-  CustomNPCStrategy(std::shared_ptr<hitman_randomizer::Config> config)
-      : RandomizationStrategy(config) {}
+  CustomNPCStrategy(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo)
+      : RandomizationStrategy(config, repo) {}
   const RepositoryID *randomize(const RepositoryID *in_out_ID) override final;
   void initialize(Scenario scen,
                   const DefaultItemPool *const default_pool) override final;

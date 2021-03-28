@@ -4,6 +4,7 @@
 
 #include "..\thirdparty\json.hpp"
 #include "RepositoryID.h"
+#include "Repository.h"
 
 using json = nlohmann::json;
 
@@ -17,16 +18,15 @@ class Item;
 class DefaultItemPool {
 private:
   std::vector<RepositoryID> ids;
+  std::shared_ptr<RandomDrawRepository> repo_;
 
 public:
-  DefaultItemPool(json &json);
+  DefaultItemPool(json &json, std::shared_ptr<RandomDrawRepository> repo);
 
   size_t size() const;
 
   void get(std::vector<const RepositoryID *> &out,
            bool (Item::*fn)() const) const;
-  void getL(std::vector<const RepositoryID *> &out,
-                             std::function<bool(const Item &)> fn) const;
 
   void getPosition(std::vector<int> &out, bool (Item::*fn)() const) const;
   size_t getCount(bool (Item::*fn)() const) const;

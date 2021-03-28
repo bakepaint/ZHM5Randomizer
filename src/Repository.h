@@ -5,6 +5,7 @@
 
 #include "..\thirdparty\json.hpp"
 #include "Item.h"
+#include "Config.h"
 #include "RepositoryID.h"
 #include "Scenario.h"
 
@@ -19,7 +20,7 @@ class ItemRepository {
   std::unordered_map<RepositoryID, Item> items;
 
  public:
-  ItemRepository();
+  ItemRepository(std::shared_ptr<Config> config);
 
   // Returns a pointer into the repository entry that matches the input ID.
   // This function is intended to be used to convert a const reference to a
@@ -28,6 +29,9 @@ class ItemRepository {
   const Item* getItem(const RepositoryID&) const;
   const std::unordered_set<RepositoryID>& getIds() const;
   bool contains(const RepositoryID&) const;
+
+  protected:
+  std::shared_ptr<Config> config_;
 };
 
 // Provides random access functionality to the ItemRepository
@@ -38,11 +42,8 @@ class RandomDrawRepository : public ItemRepository {
   // TODO: fix memory
   std::unordered_map<void*, std::vector<const RepositoryID*>*> cache;
 
-  RandomDrawRepository();
-
  public:
-  // TODO:Doesn't have to be a singleton, use dependency injection
-  static RandomDrawRepository& inst();
+  RandomDrawRepository(std::shared_ptr<Config> config);
 
   // get random RepositoryID that satisfy the test function fn;
   // RepositoryID getRandom(bool(Item::* fn)()const) const;

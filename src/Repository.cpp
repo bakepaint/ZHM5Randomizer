@@ -16,9 +16,13 @@ using json = nlohmann::json;
 
 namespace hitman_randomizer {
 
-ItemRepository::ItemRepository() {
-  std::string ignorelist_file = "..\\HITMAN2\\Retail\\IgnoreList.json";
+ItemRepository::ItemRepository(std::shared_ptr<Config> config) : config_(config) {
+  std::string ignorelist_file = config->BaseDirectory() + "\\Retail\\IgnoreList.json";
   std::ifstream ignorelist_ifs(ignorelist_file);
+
+  if (!ignorelist_ifs.is_open()) {
+    log::info("Cannot open ignore list repository at {}", ignorelist_file);
+  }
 
   json ig_set;
   ignorelist_ifs >> ig_set;
@@ -30,8 +34,12 @@ ItemRepository::ItemRepository() {
     ignore_list.insert(id);
   }
 
-  std::string repository_file = "..\\HITMAN2\\Retail\\Repository.json";
+  std::string repository_file = config->BaseDirectory() + "\\Retail\\Repository.json";
   std::ifstream repository_ifs(repository_file);
+
+  if (!repository_ifs.is_open()) {
+    log::info("Cannot open repository at {}", repository_file);
+  }
 
   json repository_json;
   repository_ifs >> repository_json;
@@ -70,13 +78,8 @@ bool ItemRepository::contains(const RepositoryID &id) const {
   return false;
 }
 
-RandomDrawRepository::RandomDrawRepository()
-    : rng_engine(RNG::inst().getEngine()) {}
-
-RandomDrawRepository &RandomDrawRepository::inst() {
-  static RandomDrawRepository instance;
-  return instance;
-}
+RandomDrawRepository::RandomDrawRepository(std::shared_ptr<Config> config)
+    : ItemRepository(config), rng_engine(RNG::inst().getEngine()) {}
 
 void RandomDrawRepository::getRandom(
     std::vector<const RepositoryID *> &item_set, unsigned int count,
