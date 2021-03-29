@@ -23,7 +23,6 @@ DefaultItemPoolRepository::DefaultItemPoolRepository(std::string path,std::share
     item_pools[key] = std::make_unique<DefaultItemPool>(it.value(), repo);
   }
 
-  log::info("Default item pool repository created.");
 }
 
 DefaultItemPool* DefaultItemPoolRepository::getDefaultPool(Scenario scen) {

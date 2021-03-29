@@ -88,7 +88,6 @@ RandomizationMan::RandomizationMan(std::shared_ptr<hitman_randomizer::Config> co
   repo_ = std::make_shared<RandomDrawRepository>(config_);
   default_item_pool_repo = std::make_unique<DefaultItemPoolRepository>(
       config->BaseDirectory() + "\\Retail\\DefaultItemPools.json", repo_);
-  log::info("Default item pool created.");
 
   world_inventory_randomizer =
       std::make_unique<Randomizer>(new IdentityRandomization(config_, repo_));
@@ -158,13 +157,11 @@ void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
     npc_item_randomizer->initialize(scenario, default_pool);
     hero_inventory_randomizer->initialize(scenario, default_pool);
     stash_item_randomizer->initialize(scenario, default_pool);
-    log::info("Randomizers initialized.");
   } else {
     world_inventory_randomizer->disable();
     npc_item_randomizer->disable();
     hero_inventory_randomizer->disable();
     stash_item_randomizer->disable();
-    log::info("No item pool found, all randomizers disabled.");
   }
 #endif
 }

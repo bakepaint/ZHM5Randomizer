@@ -13,7 +13,6 @@ DefaultItemPool::DefaultItemPool(json &json, std::shared_ptr<RandomDrawRepositor
     if (repo_->contains(id))
       ids.push_back(id);
   }
-  log::info("Default item pool created.");
 }
 
 size_t DefaultItemPool::size() const { return ids.size(); }
