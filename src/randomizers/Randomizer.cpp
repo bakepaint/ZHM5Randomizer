@@ -24,10 +24,11 @@ DefaultWorldRandomization::randomize(const RepositoryID *in_out_ID) {
   if (repo_->contains(*in_out_ID) && item_queue.size()) {
     const RepositoryID *id = item_queue.front();
     item_queue.pop();
-    // log::info(
-    //     "DefaultWorldRandomization::randomize: {}: {} -> {}",
-    //     static_cast<int>(item_queue.size()), repo_->getItem(*in_out_ID)->string(),
-    //     repo_->getItem(*id)->string());
+    log::info(
+        "DefaultWorldRandomization::randomize: {} -> {} ({})",
+        repo_->getItem(*in_out_ID)->string().c_str(),
+        repo_->getItem(*id)->string().c_str(),
+        repo_->getItem(*id)->GetId().c_str());
     return id;
   } else {
     if (!item_queue.size()) {
@@ -108,7 +109,7 @@ void ActionWorldRandomization::initialize(
       item_queue.push(repo_->getStablePointer(*repo_->getRandom(&Item::isWeapon)));
     } else if (std::find(essential_items.begin(), essential_items.end(), i) !=
                essential_items.end()) {
-      RepositoryID &original_item =
+      auto original_item =
           RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
       item_queue.push(
@@ -124,7 +125,7 @@ void ActionWorldRandomization::initialize(
         item_queue.push(
             repo_->getStablePointer(*repo_->getRandom(&Item::isWeapon)));
       } else {
-        RepositoryID &original_item =
+        auto original_item =
             RepositoryID("00000000-0000-0000-0000-000000000000");
         default_pool->getIdAt(original_item, i);
         item_queue.push(
@@ -212,7 +213,7 @@ void TreasureHuntWorldInventoryRandomization::initialize(
   }
 
   for (int i = 0; i < default_pool->size(); i++) {
-    auto &item = RepositoryID("00000000-0000-0000-0000-000000000000");
+    auto item = RepositoryID("00000000-0000-0000-0000-000000000000");
     if (std::find(gold_idol_final_slots.begin(), gold_idol_final_slots.end(),
                   i) != gold_idol_final_slots.end()) {
       item = gold_idol;
@@ -253,7 +254,7 @@ void NoItemsWorldInventoryRandomization::initialize(
       new_item_pool.insert(new_item_pool.begin() + i, pistol);
     } else if (std::find(essential_items.begin(), essential_items.end(), i) !=
                essential_items.end()) {
-      RepositoryID &original_item =
+      auto original_item =
           RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
       new_item_pool.insert(
@@ -319,9 +320,10 @@ DefaultNPCRandomization::randomize(const RepositoryID *in_out_ID) {
   };
 
   auto randomized_item = repo_->getRandom(sameType);
-  log::info("DefaultNPCRandomization::randomize: {} -> {}",
+  log::info("DefaultNPCRandomization::randomize: {} -> {} ({})",
                repo_->getItem(*in_out_ID)->string().c_str(),
-               repo_->getItem(*randomized_item)->string().c_str());
+               repo_->getItem(*randomized_item)->string().c_str(),
+               repo_->getItem(*randomized_item)->GetId().c_str());
 
   return randomized_item;
 }

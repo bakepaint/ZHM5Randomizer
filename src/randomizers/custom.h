@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "ZHM5Randomizer/src/Config.h"
+#include "ZHM5Randomizer/src/RNG.h"
 #include "ZHM5Randomizer/src/Repository.h"
 #include "ZHM5Randomizer/src/Scenario.h"
 #include "ZHM5Randomizer/src/randomizers/Randomizer.h"

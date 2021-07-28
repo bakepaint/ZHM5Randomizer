@@ -1,4 +1,4 @@
-# Bazel rules for ZHM5Randomizer for Hitman 2 (2018).
+# Bazel rules for ZHM5Randomizer for Hitman.
 
 load("@rules_cc//cc:defs.bzl", "cc_binary")
 
@@ -10,7 +10,7 @@ cc_binary(
         "**/*.hpp",
     ]),
     copts = [
-        "/std:c++17",
+        "/std:c++latest",
         "/DCOMPILING_DLL",
         "-Ithird_party",
     ],
@@ -26,6 +26,8 @@ cc_binary(
         "-DEFAULTLIB:uuid",
         "-DEFAULTLIB:comdlg32",
         "-DEFAULTLIB:advapi32",
+        "-DEFAULTLIB:crypt32",
+        "-DEFAULTLIB:wintrust",
     ],
     linkshared = 1,
     deps = [

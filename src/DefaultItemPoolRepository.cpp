@@ -1,4 +1,5 @@
 #include "DefaultItemPoolRepository.h"
+#include <fstream>
 
 #include "Console.h"
 

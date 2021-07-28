@@ -1,105 +1,85 @@
-#include "Offsets.h"
-#include "SigScanner.h"
-#include "Signatures.h"
-#include "Version.h"
+#include "ZHM5Randomizer/src/Offsets.h"
 
 #include <Windows.h>
 
-#include "spdlog/spdlog.h"
+#include <filesystem>
+#include <format>
 
+#include "ZHM5Randomizer/src/Pe.h"
+#include "ZHM5Randomizer/src/SigScanner.h"
+#include "ZHM5Randomizer/src/Signatures.h"
 
 namespace hitman_randomizer {
 
 [[noreturn]] void offsetSearchFailed() {
-  MessageBoxA(NULL,
-              "Signature scanning failed. The current game version might not "
-              "be supported.",
-              "", NULL);
-  ExitProcess(0);
+    MessageBoxA(NULL, "Signature scanning failed. The current game version might not be supported.", "", NULL);
+    ExitProcess(0);
 }
 
 void* getOffsetByName(const std::string& name) {
-  SigScanner scanner;
-  auto off = scanner.find(Signatures::locators[name].signature) +
-             Signatures::locators[name].offset;
-  if (off < 0) offsetSearchFailed();
-  return reinterpret_cast<void*>(off);
+    SigScanner scanner;
+    auto off = scanner.find(Signatures::locators[name].signature) + Signatures::locators[name].offset;
+    if(off < 0)
+        offsetSearchFailed();
+    return reinterpret_cast<void*>(off);
 }
 
-// Check IDA databases for notes about how to update offsets.
-// Current version: 2.72.0 Update 3
 GameOffsets::GameOffsets() {
-  switch (getVersion()) {
-    case GameVersion::H2DX12:
-      offsets.pPushItem = reinterpret_cast<void*>(0x140C24650);
-      offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x140C24BD0);
-      offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140C24581);
-      offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1405D7217);
-      offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x14059039A);
-      offsets.pZEntitySceneContext_LoadScene =
-          reinterpret_cast<void**>(0x1416AEE68);
-
-      break;
-    case GameVersion::H2DX11:
-      offsets.pPushItem = reinterpret_cast<void*>(0x140C24AF0);
-      offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x140C25070);
-      offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140C24A21);
-      offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1405D78F7);
-      offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140590A7A);
-      offsets.pZEntitySceneContext_LoadScene =
-          reinterpret_cast<void**>(0x141693D70);
-      break;
+    switch(getVersion()) {
     case GameVersion::H3DX12: {
-      offsets.pPushItem = getOffsetByName("PushItem");
-      offsets.pPushNPCInventoryDetour =
-          getOffsetByName("PushNPCInventoryDetour");
-      offsets.pPushWorldInventoryDetour =
-          getOffsetByName("PushWorldInventoryDetour");
-      offsets.pPushHeroInventoryDetour =
-          getOffsetByName("PushHeroInventoryDetour");
-      offsets.pPushStashInventoryDetour =
-          getOffsetByName("PushStashInventoryDetour");
 
-      // Scan for ZEntitySceneContext_LoadScene function and then for it's
-      // vtable entry.
-      auto ZEntitySceneContext_LoadScene =
-          getOffsetByName("ZEntitySceneContext_LoadScene");
-      std::vector<int16_t> pattern(sizeof(void*));
-      for (int i = 0; i < sizeof(void*); ++i)
-        pattern[i] = reinterpret_cast<char*>(&ZEntitySceneContext_LoadScene)[i];
-      SigScanner scanner;
-      offsets.pZEntitySceneContext_LoadScene =
-          reinterpret_cast<void**>(scanner.find(pattern));
-      if (offsets.pZEntitySceneContext_LoadScene < 0) offsetSearchFailed();
-      break;
-    }
+        // TODO: Reintroduce signature scanning here. It was previously removed because of major
+        // signature changed introduced with Hitman update 3.30. (Inlining, NPC/WorldItem spawn
+        // merge). If the new layout turns out to be stable, sig scanning should be reintroduced.
+
+        // Hitman 3 3.40.1 offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140D75060);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140D75650);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x14015FF01);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140D6F68A);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x14064C923);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1403D8074);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141D11D20);
+    } break;
+    case GameVersion::H2DX12:
+    case GameVersion::H2DX11:
+        // TODO: H2 Specific error message
     default:
-      MessageBoxA(NULL, "Randomizer doesn't support current game version", "",
-                  NULL);
-      ExitProcess(0);
-  }
+        MessageBoxA(NULL,
+                    std::format("Incompatible client version detected. Please update to the latest "
+                                "client release.\n\nPE timestamp: {:X}",
+                                PE::getTimestamp())
+                    .c_str(),
+                    "Incompatible Client Version", NULL);
+        ExitProcess(0);
+    }
 }
 
-const GameOffsets *GameOffsets::instance() {
-  static GameOffsets instance;
-  return &instance;
+const GameOffsets* GameOffsets::instance() {
+    static GameOffsets instance;
+    return &instance;
 }
 
-void *GameOffsets::getPushItem() const { return offsets.pPushItem; }
-void *GameOffsets::getPushWorldInventoryDetour() const {
-  return offsets.pPushWorldInventoryDetour;
+void* GameOffsets::getPushItem0() const {
+    return offsets.pPushItem0;
 }
-void *GameOffsets::getPushNPCInventoryDetour() const {
-  return offsets.pPushNPCInventoryDetour;
+void* GameOffsets::getPushItem1() const {
+    return offsets.pPushItem1;
 }
-void *GameOffsets::getPushHeroInventoryDetour() const {
-  return offsets.pPushHeroInventoryDetour;
+void* GameOffsets::getPushWorldInventoryDetour() const {
+    return offsets.pPushWorldInventoryDetour;
 }
-void *GameOffsets::getPushStashInventoryDetour() const {
-  return offsets.pPushStashInventoryDetour;
+void* GameOffsets::getPushNPCInventoryDetour() const {
+    return offsets.pPushNPCInventoryDetour;
 }
-void **GameOffsets::getZEntitySceneContext_LoadScene() const {
-  return offsets.pZEntitySceneContext_LoadScene;
+void* GameOffsets::getPushHeroInventoryDetour() const {
+    return offsets.pPushHeroInventoryDetour;
+}
+void* GameOffsets::getPushStashInventoryDetour() const {
+    return offsets.pPushStashInventoryDetour;
+}
+void** GameOffsets::getZEntitySceneContext_LoadScene() const {
+    return offsets.pZEntitySceneContext_LoadScene;
 }
 
-}  // namespace hitman_randomizer
+}

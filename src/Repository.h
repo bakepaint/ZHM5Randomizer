@@ -4,10 +4,10 @@
 #include <unordered_set>
 
 #include "..\thirdparty\json.hpp"
-#include "Item.h"
-#include "Config.h"
-#include "RepositoryID.h"
-#include "Scenario.h"
+#include "ZHM5Randomizer/src/Item.h"
+#include "ZHM5Randomizer/src/Config.h"
+#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "ZHM5Randomizer/src/Scenario.h"
 
 using json = nlohmann::json;
 
@@ -52,7 +52,8 @@ class RandomDrawRepository : public ItemRepository {
                  bool (Item::*fn)() const);
   void getRandom(std::vector<const RepositoryID*>& item_set, unsigned int count,
                  std::function<bool(const Item& it)>);
-void RandomDrawRepository::AllMatches(
+
+void AllMatches(
     std::vector<const RepositoryID *> &item_set, unsigned int count,
     std::function<bool(const Item &)> fn);
 

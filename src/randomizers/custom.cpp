@@ -41,7 +41,7 @@ void CustomWorldStrategy::initialize(
 
   for (int i = 0; i < default_item_pool_size; i++) {
     if (std::find(essential_items.begin(), essential_items.end(), i) != essential_items.end()) {
-      RepositoryID& original_item = RepositoryID("00000000-0000-0000-0000-000000000000");
+      auto original_item = RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
       item_queue.push(repo_->getStablePointer(RepositoryID(original_item.toString())));
     } else {
