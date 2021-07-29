@@ -13,8 +13,12 @@
 #include "ZHM5Randomizer/src/Scenario.h"
 #include "ZHM5Randomizer/src/randomizers/Randomizer.h"
 #include "ZHM5Randomizer/src/randomizers/custom.h"
+#include "ZHM5Randomizer/src/randomizers/world/action.h"
+#include "ZHM5Randomizer/src/randomizers/world/all_explosives.h"
+#include "ZHM5Randomizer/src/randomizers/world/default.h"
+#include "ZHM5Randomizer/src/randomizers/world/treasure_hunt.h"
+#include "ZHM5Randomizer/src/randomizers/world/no_items.h"
 #include "spdlog/spdlog.h"
-
 
 #ifdef DEFAULTPOOLEXPORT
 #include "DefaultPoolExport.h"

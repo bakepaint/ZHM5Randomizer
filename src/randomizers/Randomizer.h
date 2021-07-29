@@ -39,55 +39,6 @@ class IdentityRandomization : public RandomizationStrategy {
   const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
 };
 
-// This Randomization strategy is intended to be used to randomize world items
-// during the initial load of a level. It's desiged to be as undistruptive to
-// the game flow as possible.
-class DefaultWorldRandomization : public RandomizationStrategy {
- protected:
-  std::queue<const RepositoryID*> item_queue;
-
- public:
- DefaultWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}
-  const RepositoryID* randomize(const RepositoryID* in_out_ID) override;
-  void initialize(Scenario scen,
-                  const DefaultItemPool* const default_pool) override;
-};
-
-class OopsAllExplosivesWorldInventoryRandomization
-    : public DefaultWorldRandomization {
- public:
- OopsAllExplosivesWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
-  const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool* const default_pool) override final;
-};
-
-class TreasureHuntWorldInventoryRandomization
-    : public DefaultWorldRandomization {
- public:
- TreasureHuntWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
-  const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool* const default_pool) override final;
-};
-
-class NoItemsWorldInventoryRandomization : public DefaultWorldRandomization {
- public:
- NoItemsWorldInventoryRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
-  const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool* const default_pool) override final;
-};
-
-class ActionWorldRandomization : public DefaultWorldRandomization {
- public:
- ActionWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : DefaultWorldRandomization(config, repo) {}
-  const RepositoryID* randomize(const RepositoryID* in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool* const default_pool) override final;
-};
-
-
 class DefaultNPCRandomization : public RandomizationStrategy {
  public:
  DefaultNPCRandomization(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo) : RandomizationStrategy(config, repo) {}

@@ -12,6 +12,7 @@
 #include "ZHM5Randomizer/src/Repository.h"
 #include "ZHM5Randomizer/src/Scenario.h"
 #include "ZHM5Randomizer/src/randomizers/Randomizer.h"
+#include "ZHM5Randomizer/src/randomizers/world/default.h"
 
 namespace hitman_randomizer {
 
