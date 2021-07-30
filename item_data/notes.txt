@@ -1,0 +1,4 @@
+1. Emetic chewing gum doesn't seem to work but b541d1ce-3e7a-49bb-b3ae-f5a6ca441239 does.
+2. One fireworks remote: e83c4ea3-e964-43b0-9804-55cfbb32c83a seems to be Paris quest item.
+3. 9278382c-9c73-4d0b-8be2-9cb151d3667c might be an item that can't be picked up.
+4. 49c5edfa-bd1c-4914-8368-bac3b65becf1 is a syringe that doesn't appear in the inventory when picked up, but spawns on Colorado by default so seems required.

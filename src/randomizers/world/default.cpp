@@ -19,8 +19,9 @@ DefaultWorldRandomization::randomize(const RepositoryID *in_out_ID) {
     const RepositoryID *id = item_queue.front();
     item_queue.pop();
     log::info(
-        "DefaultWorldRandomization::randomize: {} -> {} ({})",
+        "DefaultWorldRandomization: {} ({}) -> {} ({})",
         repo_->getItem(*in_out_ID)->string().c_str(),
+        repo_->getItem(*in_out_ID)->GetId().c_str(),
         repo_->getItem(*id)->string().c_str(),
         repo_->getItem(*id)->GetId().c_str());
     return id;
