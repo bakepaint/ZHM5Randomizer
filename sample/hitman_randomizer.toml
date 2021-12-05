@@ -8,7 +8,7 @@ heroInventoryRandomizer  = "DEFAULT"
 
 # NPC randomizers: NONE, DEFAULT, UNLIMITED, HARD, SLEEPY, CHAIN_REACTION,
 # CUSTOM
-npcInventoryRandomizer   = "DEFAULT"
+npcInventoryRandomizer   = "UNLIMITED"
 
 # Stash randomizers: NONE, DEFAULT
 stashInventoryRandomizer = "DEFAULT"
@@ -40,6 +40,20 @@ RNGSeed = 0
 # distraction
 # poison
 # smg
+
+# Here is an example custom configuration.
+#
+# This configuration removes all pistols from NPCs and the world, gives
+# shotguns, SMGs, and assault rifles to NPCs, and prevents silenced weapons from
+# spawning in the world.
+#
+# [Custom.World]
+# allowed_words = []
+# ignored_words = ["sniperrifle", "assaultrifle", "shotgun", "smg", "silence", "covert", "pistol", "desert", "jungle", "RS-15", "wolverine", "stealth", "beanbag"]
+# 
+# [Custom.NPC]
+# allowed_words = ["shotgun", "assaultrifle", "smg"]
+# ignored_words = ["silence", "covert", "TAC ", "jungle", "desert", "beanbag", "stealth", "RS-15", "wolverine"]
 
 [Custom.World]
 allowed_words = []
