@@ -114,7 +114,8 @@ DefaultStashRandomization::randomize(const RepositoryID *in_out_ID) {
   auto in_item = repo_->getItem(*in_out_ID);
 
   auto sameType = [&in_item](const Item &item) {
-    return in_item->getType() == item.getType() && item.isItemAcceptableDefaultItem();
+    return in_item->getType() == item.getType() && 
+      (item.isItemAcceptableDefaultItem() || item.isWeapon());
   };
 
   auto randomized_item = repo_->getRandom(sameType);

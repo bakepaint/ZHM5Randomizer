@@ -39,7 +39,7 @@ GameOffsets::GameOffsets() {
         offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d7891a);
         offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x140651ed3);
         offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1403dd954);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d22340);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d223f8);
     } break;
     case GameVersion::H2DX12:
     case GameVersion::H2DX11:
