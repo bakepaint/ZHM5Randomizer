@@ -1,4 +1,4 @@
-#include "ZHM5Randomizer/src/randomizers/world/no_items.h"
+#include "ZHM5Randomizer/src/randomizers/world/NoItems.h"
 
 #include <algorithm>
 #include <random>

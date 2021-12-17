@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOLREPOSITORY_H__
+#define __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOLREPOSITORY_H__
+
 #include <memory>
 #include <unordered_map>
 
@@ -18,3 +20,5 @@ class DefaultItemPoolRepository {
 };
 
 }  // namespace hitman_randomizer
+
+#endif // __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOLREPOSITORY_H__

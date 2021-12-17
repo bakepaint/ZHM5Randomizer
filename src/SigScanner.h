@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_SIGSCANNER_H__
+#define __ZHM5RANDOMIZER_SRC_SIGSCANNER_H__
+
 #include <Windows.h>
 #include <cinttypes>
 #include <vector>
@@ -33,3 +35,5 @@ private:
         return true;
     }
 };
+
+#endif // __ZHM5RANDOMIZER_SRC_SIGSCANNER_H__

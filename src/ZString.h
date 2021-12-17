@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_ZSTRING_H__
+#define __ZHM5RANDOMIZER_SRC_ZSTRING_H__
+
 #include <cinttypes>
 #include <string>
 #include <string_view>
@@ -30,3 +32,5 @@ struct std::hash<ZString> {
 };
 
 static_assert(sizeof(ZString) == 0x10);
+
+#endif // __ZHM5RANDOMIZER_SRC_ZSTRING_H__

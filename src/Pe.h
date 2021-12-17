@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_PE_H__
+#define __ZHM5RANDOMIZER_SRC_PE_H__
+
 #include <memory>
 #include <optional>
 #include <string >
@@ -33,3 +35,5 @@ bool verifySignature(const wchar_t* path);
 int getTimestamp();
 
 } // namespace PE
+
+#endif // __ZHM5RANDOMIZER_SRC_PE_H__

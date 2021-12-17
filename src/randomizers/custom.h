@@ -28,27 +28,6 @@ Iter select_randomly(Iter start, Iter end) {
     return select_randomly(start, end, *RNG::inst().getEngine());
 }
 
-class CustomWorldStrategy : public DefaultWorldRandomization {
-public:
-  CustomWorldStrategy(std::shared_ptr<hitman_randomizer::Config> config, std::shared_ptr<RandomDrawRepository> repo)
-      : DefaultWorldRandomization(config, repo) {}
-  const RepositoryID *randomize(const RepositoryID *in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool *const default_pool) override final;
-};
-
-class CustomNPCStrategy : public RandomizationStrategy {
-public:
-  CustomNPCStrategy(std::shared_ptr<hitman_randomizer::Config> config,std::shared_ptr<RandomDrawRepository> repo)
-      : RandomizationStrategy(config, repo) {}
-  const RepositoryID *randomize(const RepositoryID *in_out_ID) override final;
-  void initialize(Scenario scen,
-                  const DefaultItemPool *const default_pool) override final;
-
-private:
-  std::vector<const RepositoryID*> item_pool_;
-};
-
 }  // namespace hitman_randomizer
 
 #endif  // __ZHM5RANDOMIZER_SRC_RANDOMIZERS_H__

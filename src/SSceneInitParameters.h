@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_SSCENEINITPARAMETERS_H__
+#define __ZHM5RANDOMIZER_SRC_SSCENEINITPARAMETERS_H__
+
 #include <regex>
 
 #include "TArray.h"
@@ -33,3 +35,5 @@ struct std::hash<SSceneInitParameters> {
     return hash;
   }
 };
+
+#endif // __ZHM5RANDOMIZER_SRC_SSCENEINITPARAMETERS_H__

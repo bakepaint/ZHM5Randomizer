@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_MEMORYUTILS_H__
+#define __ZHM5RANDOMIZER_SRC_MEMORYUTILS_H__
 
 namespace hitman_randomizer {
 
@@ -13,3 +14,5 @@ class MemoryUtils {
 };
 
 }  // namespace hitman_randomizer
+
+#endif // __ZHM5RANDOMIZER_SRC_MEMORYUTILS_H__

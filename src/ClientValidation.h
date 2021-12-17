@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_CLIENTVALIDATION_H__
+#define __ZHM5RANDOMIZER_SRC_CLIENTVALIDATION_H__
 
 namespace Validation {
 
@@ -14,3 +15,5 @@ enum class Status {
 Status isValidClient();
 
 } // namespace Validation
+
+#endif // __ZHM5RANDOMIZER_SRC_CLIENTVALIDATION_H__

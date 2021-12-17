@@ -1,4 +1,4 @@
-#include "ZHM5Randomizer/src/randomizers/world/all_explosives.h"
+#include "ZHM5Randomizer/src/randomizers/world/AllExplosives.h"
 
 #include <algorithm>
 #include <random>

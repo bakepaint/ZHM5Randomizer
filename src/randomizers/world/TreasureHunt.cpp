@@ -1,4 +1,4 @@
-#include "ZHM5Randomizer/src/randomizers/world/treasure_hunt.h"
+#include "ZHM5Randomizer/src/randomizers/world/TreasureHunt.h"
 
 #include <queue>
 #include <random>

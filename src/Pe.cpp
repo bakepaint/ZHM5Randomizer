@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_PE_CPP__
+#define __ZHM5RANDOMIZER_SRC_PE_CPP__
+
 #include "Pe.h"
 #include "Process.h"
 #include <memory>
@@ -163,3 +165,5 @@ int PE::getTimestamp() {
     auto nt_header = reinterpret_cast<IMAGE_NT_HEADERS*>((uintptr_t)image_base + dos_header->e_lfanew);
     return nt_header->FileHeader.TimeDateStamp;
 }
+
+#endif // __ZHM5RANDOMIZER_SRC_PE_CPP__

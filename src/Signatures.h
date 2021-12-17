@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_SIGNATURES_H__
+#define __ZHM5RANDOMIZER_SRC_SIGNATURES_H__
+
 #include <unordered_map>
 #include <vector>
 
@@ -14,3 +16,5 @@ struct Locator {
 extern std::unordered_map<std::string, Locator> locators;
 
 }; // namespace Signatures
+
+#endif // __ZHM5RANDOMIZER_SRC_SIGNATURES_H__

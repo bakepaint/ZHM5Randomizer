@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZATIONMAN_H__
+#define __ZHM5RANDOMIZER_SRC_RANDOMIZATIONMAN_H__
 
 #include "ZHM5Randomizer/src/DefaultItemPoolRepository.h"
 #include "ZHM5Randomizer/src/Offsets.h"
@@ -72,3 +73,5 @@ class RandomizationMan {
 };
 
 }  // namespace hitman_randomizer
+
+#endif // __ZHM5RANDOMIZER_SRC_RANDOMIZATIONMAN_H__

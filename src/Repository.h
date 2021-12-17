@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_REPOSITORY_H__
+#define __ZHM5RANDOMIZER_SRC_REPOSITORY_H__
+
 #include <random>
 #include <unordered_map>
 #include <unordered_set>
@@ -60,3 +62,5 @@ void AllMatches(
 };
 
 }  // namespace hitman_randomizer
+
+#endif // __ZHM5RANDOMIZER_SRC_REPOSITORY_H__

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_REPOSITORYID_H__
+#define __ZHM5RANDOMIZER_SRC_REPOSITORYID_H__
+
 #include <rpc.h>
 
 #include <string>
@@ -32,3 +34,5 @@ struct std::hash<hitman_randomizer::RepositoryID> {
     return hash;
   }
 };
+
+#endif // __ZHM5RANDOMIZER_SRC_REPOSITORYID_H__

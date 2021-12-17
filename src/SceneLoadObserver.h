@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_SCENELOADOBSERVER_H__
+#define __ZHM5RANDOMIZER_SRC_SCENELOADOBSERVER_H__
+
 #include <functional>
 
 #include "SSceneInitParameters.h"
@@ -21,3 +23,5 @@ class SceneLoadObserver {
   static uint64_t detour(void* this_, SSceneInitParameters* scene_init_params);
   static void registerSceneLoadCallback(const tLoadSceneCallback& callback);
 };
+
+#endif // __ZHM5RANDOMIZER_SRC_SCENELOADOBSERVER_H__

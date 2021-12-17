@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_HASH_H__
+#define __ZHM5RANDOMIZER_SRC_HASH_H__
+
 #include <string>
 #include <type_traits>
 
@@ -22,3 +24,5 @@ constexpr size_t constexpr_hash(const std::string& s,
   return constexpr_hash(s.c_str());
 }
 };  // namespace Hash
+
+#endif // __ZHM5RANDOMIZER_SRC_HASH_H__

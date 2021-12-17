@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_TARRAY_H__
+#define __ZHM5RANDOMIZER_SRC_TARRAY_H__
+
 #include <type_traits>
 
 #include "ZString.h"
@@ -86,3 +88,5 @@ struct std::hash<TArray<T>> {
     return hash;
   }
 };
+
+#endif // __ZHM5RANDOMIZER_SRC_TARRAY_H__

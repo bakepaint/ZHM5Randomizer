@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOL_H__
+#define __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOL_H__
+
 #include <functional>
 #include <vector>
 
@@ -37,3 +39,5 @@ public:
 };
 
 }  // namespace hitman_randomizer
+
+#endif // __ZHM5RANDOMIZER_SRC_DEFAULTITEMPOOL_H__
