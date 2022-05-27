@@ -17,6 +17,7 @@
 #include "ZHM5Randomizer/src/randomizers/world/AllExplosives.h"
 #include "ZHM5Randomizer/src/randomizers/world/Custom.h"
 #include "ZHM5Randomizer/src/randomizers/world/Default.h"
+#include "ZHM5Randomizer/src/randomizers/world/Roulette.h"
 #include "ZHM5Randomizer/src/randomizers/world/TreasureHunt.h"
 #include "ZHM5Randomizer/src/randomizers/world/NoItems.h"
 #include "ZHM5Randomizer/src/randomizers/npc/Default.h"
@@ -64,6 +65,7 @@ std::unordered_map<
         {"NO_ITEMS", &createInstance<NoItemsWorldInventoryRandomization>},
         {"ACTION", &createInstance<ActionWorldRandomization>},
         {"CUSTOM", &createInstance<CustomWorldStrategy>},
+        {"ROULETTE", &createInstance<RouletteWorldStrategy>},
     };
 
 std::unordered_map<

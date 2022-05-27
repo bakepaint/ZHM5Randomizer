@@ -100,29 +100,29 @@ public:
       return false;
     }
 
-    if (isTool()) {
-      // Default crowbar
-      if (GetId() == "01ed6d15-e26e-4362-b1a6-363684a7d0fd") {
-        return true;
-      }
-      // Default screwdriver
-      if (GetId() == "12cb6b51-a6dd-4bf5-9653-0ab727820cac") {
-        return true;
-      }
-      // Default wrench
-      if (GetId() == "6adddf7e-6879-4d51-a7e2-6a25ffdca6ae") {
-        return true;
-      }
-      // Pristine lockpick
-      if (GetId() == "2b2bdde8-19d2-40de-a2fa-f2ddf225d040") {
-        return true;
-      }
-      // Keycard hacker
-      if (GetId() == "b970a355-4296-4acc-9ec9-584e69a79eed") {
-        return true;
-      }
-      return false;
-    }
+    // if (isTool()) {
+    //   // Default crowbar
+    //   if (GetId() == "01ed6d15-e26e-4362-b1a6-363684a7d0fd") {
+    //     return true;
+    //   }
+    //   // Default screwdriver
+    //   if (GetId() == "12cb6b51-a6dd-4bf5-9653-0ab727820cac") {
+    //     return true;
+    //   }
+    //   // Default wrench
+    //   if (GetId() == "6adddf7e-6879-4d51-a7e2-6a25ffdca6ae") {
+    //     return true;
+    //   }
+    //   // Pristine lockpick
+    //   if (GetId() == "2b2bdde8-19d2-40de-a2fa-f2ddf225d040") {
+    //     return true;
+    //   }
+    //   // Keycard hacker
+    //   if (GetId() == "b970a355-4296-4acc-9ec9-584e69a79eed") {
+    //     return true;
+    //   }
+    //   return false;
+    // }
     return true;
   }
 
@@ -154,7 +154,7 @@ public:
 
   const std::string toString() const {
         std::stringstream fmt;
-    fmt << "Item{" << title() << ", " << string() << ", " << IconString() << "}";
+    fmt << "Item{" << GetId() << ", " << string() << ", " << IconString() << "}";
     return fmt.str();
   }
 

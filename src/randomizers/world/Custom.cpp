@@ -36,10 +36,10 @@ void CustomWorldStrategy::initialize(
     if (std::find(essential_items.begin(), essential_items.end(), i) != essential_items.end()) {
       auto original_item = RepositoryID("00000000-0000-0000-0000-000000000000");
       default_pool->getIdAt(original_item, i);
-      item_queue.push(repo_->getStablePointer(RepositoryID(original_item.toString())));
+      item_queue.push_back(repo_->getStablePointer(RepositoryID(original_item.toString())));
     } else {
       auto result = *select_randomly(item_pool.begin(), item_pool.end());
-      item_queue.push(repo_->getStablePointer(RepositoryID(result->toString())));
+      item_queue.push_back(repo_->getStablePointer(RepositoryID(result->toString())));
     }
   }
 

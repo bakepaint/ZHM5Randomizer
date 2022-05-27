@@ -33,7 +33,6 @@ CustomNPCStrategy::randomize(const RepositoryID *in_out_ID) {
     return in_out_ID;
   }
   auto result = *select_randomly(item_pool_.begin(), item_pool_.end());
-  log::info("CustomNPCStrategy::randomize complete.");
   return result;
 }
 

@@ -50,7 +50,7 @@ void NoItemsWorldInventoryRandomization::initialize(
     }
   }
 
-  for (const auto &id : new_item_pool) item_queue.push(id);
+  for (const auto &id : new_item_pool) item_queue.push_back(id);
 }
 
 }  // namespace hitman_randomizer

@@ -17,7 +17,7 @@ const RepositoryID *
 DefaultWorldRandomization::randomize(const RepositoryID *in_out_ID) {
   if (repo_->contains(*in_out_ID) && item_queue.size()) {
     const RepositoryID *id = item_queue.front();
-    item_queue.pop();
+    item_queue.pop_front();
     log::info(
         "DefaultWorldRandomization: {} ({}) -> {} ({})",
         repo_->getItem(*in_out_ID)->string().c_str(),
@@ -70,7 +70,7 @@ void DefaultWorldRandomization::initialize(
 
   // fill queue
   for (const auto &id : new_item_pool)
-    item_queue.push(id);
+    item_queue.push_back(id);
 }
 
 }  // namespace hitman_randomizer

@@ -23,7 +23,7 @@ void TreasureHuntWorldInventoryRandomization::initialize(
     Scenario scen, const DefaultItemPool *const default_pool) {
   std::vector<const RepositoryID *> new_item_pool;
 
-  auto gold_idol = RepositoryID("4b0def3b-7378-494d-b885-92c334f2f8cb");
+  auto gold_idol = RepositoryID("ed45f927-589d-4bad-ac1b-67e41c32e5ee");
   auto bust = RepositoryID("a6bcac8b-9772-424e-b2c4-3bdb4da0e349");
   std::vector<int> gold_idol_possible_slots;
   std::vector<int> gold_idol_final_slots;
@@ -51,7 +51,7 @@ void TreasureHuntWorldInventoryRandomization::initialize(
         item = bust;
       }
     }
-    item_queue.push(repo_->getStablePointer(item));
+    item_queue.push_back(repo_->getStablePointer(item));
   }
 }
 

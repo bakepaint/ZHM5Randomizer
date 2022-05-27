@@ -1,6 +1,7 @@
 #ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZERS_WORLD_DEFAULT_H__
 #define __ZHM5RANDOMIZER_SRC_RANDOMIZERS_WORLD_DEFAULT_H__
 
+#include <deque>
 #include <queue>
 #include <random>
 #include <type_traits>
@@ -18,7 +19,7 @@ namespace hitman_randomizer {
 // the game flow as possible.
 class DefaultWorldRandomization : public RandomizationStrategy {
  protected:
-  std::queue<const RepositoryID*> item_queue;
+  std::deque<const RepositoryID*> item_queue;
 
  public:
   DefaultWorldRandomization(std::shared_ptr<hitman_randomizer::Config> config,

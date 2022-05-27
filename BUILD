@@ -61,6 +61,8 @@ cc_binary(
         "src/randomizers/world/Default.h",
         "src/randomizers/world/NoItems.cpp",
         "src/randomizers/world/NoItems.h",
+        "src/randomizers/world/Roulette.cpp",
+        "src/randomizers/world/Roulette.h",
         "src/randomizers/world/TreasureHunt.cpp",
         "src/randomizers/world/TreasureHunt.h",
         "src/Repository.cpp",

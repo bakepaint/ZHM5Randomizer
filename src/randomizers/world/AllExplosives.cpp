@@ -47,7 +47,7 @@ void OopsAllExplosivesWorldInventoryRandomization::initialize(
 
   // fill queue
   for (const auto &id : new_item_pool)
-    item_queue.push(id);
+    item_queue.push_back(id);
 
   // TODO: Move this print code
   log::info("ItemPool report:");
