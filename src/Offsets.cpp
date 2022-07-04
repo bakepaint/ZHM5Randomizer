@@ -24,15 +24,13 @@ void* getOffsetByName(const std::string& name) {
     return reinterpret_cast<void*>(off);
 }
 
+// TODO: Reintroduce signature scanning here. It was previously removed because of major
+// signature changed introduced with Hitman update 3.30. (Inlining, NPC/WorldItem spawn
+// merge). If the new layout turns out to be stable, sig scanning should be reintroduced.
 GameOffsets::GameOffsets() {
     switch(getVersion()) {
-    case GameVersion::H3DX12: {
-
-        // TODO: Reintroduce signature scanning here. It was previously removed because of major
-        // signature changed introduced with Hitman update 3.30. (Inlining, NPC/WorldItem spawn
-        // merge). If the new layout turns out to be stable, sig scanning should be reintroduced.
-
-        // Hitman 3 3.110.1 offsets
+    case GameVersion::H3DX12_EGS: {
+        // Hitman 3 3.110.1 EGS offsets
         offsets.pPushItem0 = reinterpret_cast<void*>(0x140dd69a0);
         offsets.pPushItem1 = reinterpret_cast<void*>(0x140dd6f90);
         offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x14080b2b3);
@@ -41,6 +39,17 @@ GameOffsets::GameOffsets() {
         offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dd0fca);
         offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d5da90);
     } break;
+    case GameVersion::H3DX12_STEAM: {
+        // Hitman 3 3.110.1 Steam offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140dd5a90);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140dd6080);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x14080afe3);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x140119b81);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402706b4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dd00ba);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d62de0);
+    } break;    
+
     case GameVersion::H2DX12:
     case GameVersion::H2DX11:
         // TODO: H2 Specific error message
