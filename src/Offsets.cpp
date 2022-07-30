@@ -30,24 +30,24 @@ void* getOffsetByName(const std::string& name) {
 GameOffsets::GameOffsets() {
     switch(getVersion()) {
     case GameVersion::H3DX12_EGS: {
-        // Hitman 3 3.110.1 EGS offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140dd69a0);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140dd6f90);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x14080b2b3);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x140119e41);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140270974);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dd0fca);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d5da90);
+        // Hitman 3 3.120.0 EGS offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9c6d0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9ccc0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407cee63);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd9b1);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140234384);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d96cfa);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d604a0);
     } break;
     case GameVersion::H3DX12_STEAM: {
         // Hitman 3 3.110.1 Steam offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140dd5a90);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140dd6080);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x14080afe3);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x140119b81);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402706b4);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dd00ba);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d62de0);
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9b7d0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9bdc0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ceb93);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd6f1);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402340c4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d95dfa);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d658b0);
     } break;    
 
     case GameVersion::H2DX12:
@@ -55,11 +55,13 @@ GameOffsets::GameOffsets() {
         // TODO: H2 Specific error message
     default:
         MessageBoxA(NULL,
-                    std::format("Incompatible client version detected. Please update to the latest "
-                                "client release.\n\nPE timestamp: {:X}",
+                    std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
+                                "Supported versions are:\n\n"
+                                "- Hitman 3 EGS 3.120.0 (0x62C641F4)\n"
+                                "- Hitman 3 Steam 3.120.0 (0x62C6418B)\n",
                                 PE::getTimestamp())
                     .c_str(),
-                    "Incompatible Client Version", NULL);
+                    "Randomizer Mod Failure", NULL);
         ExitProcess(0);
     }
 }

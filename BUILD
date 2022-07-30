@@ -59,6 +59,8 @@ cc_binary(
         "src/randomizers/world/Custom.h",
         "src/randomizers/world/Default.cpp",
         "src/randomizers/world/Default.h",
+        "src/randomizers/world/Identity.cpp",
+        "src/randomizers/world/Identity.h",
         "src/randomizers/world/NoItems.cpp",
         "src/randomizers/world/NoItems.h",
         "src/randomizers/world/Roulette.cpp",

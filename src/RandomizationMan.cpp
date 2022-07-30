@@ -17,6 +17,7 @@
 #include "ZHM5Randomizer/src/randomizers/world/AllExplosives.h"
 #include "ZHM5Randomizer/src/randomizers/world/Custom.h"
 #include "ZHM5Randomizer/src/randomizers/world/Default.h"
+#include "ZHM5Randomizer/src/randomizers/world/Identity.h"
 #include "ZHM5Randomizer/src/randomizers/world/Roulette.h"
 #include "ZHM5Randomizer/src/randomizers/world/TreasureHunt.h"
 #include "ZHM5Randomizer/src/randomizers/world/NoItems.h"
@@ -56,7 +57,7 @@ std::unordered_map<
     RandomizationStrategy *(*)(std::shared_ptr<hitman_randomizer::Config>,
                                std::shared_ptr<RandomDrawRepository>)>
     worldRandomizers{
-        {"NONE", &createInstance<IdentityRandomization>},
+        {"NONE", &createInstance<WorldIdentityRandomization>},
         {"DEFAULT", &createInstance<DefaultWorldRandomization>},
         {"OOPS_ALL_EXPLOSIVES",
          &createInstance<OopsAllExplosivesWorldInventoryRandomization>},
