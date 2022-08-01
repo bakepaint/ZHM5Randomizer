@@ -48,7 +48,16 @@ GameOffsets::GameOffsets() {
         offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402340c4);
         offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d95dfa);
         offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d658b0);
-    } break;    
+    } break;
+    case GameVersion::H3DX12_STEAM_ALT: {
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9b7d0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9bdc0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ceb93);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd6f1);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402340c4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d95dfa);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d658b0);
+    }
 
     case GameVersion::H2DX12:
     case GameVersion::H2DX11:
@@ -59,6 +68,7 @@ GameOffsets::GameOffsets() {
                                 "Supported versions are:\n\n"
                                 "- Hitman 3 EGS 3.120.0 (0x62C641F4)\n"
                                 "- Hitman 3 Steam 3.120.0 (0x62C6418B)\n",
+                                "- Hitman 3 Steam 3.120.0 alternate (0x62C5CE14)\n",
                                 PE::getTimestamp())
                     .c_str(),
                     "Randomizer Mod Failure", NULL);
