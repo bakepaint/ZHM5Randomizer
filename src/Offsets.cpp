@@ -29,46 +29,33 @@ void* getOffsetByName(const std::string& name) {
 // merge). If the new layout turns out to be stable, sig scanning should be reintroduced.
 GameOffsets::GameOffsets() {
     switch(getVersion()) {
-    case GameVersion::H3DX12_EGS: {
-        // Hitman 3 3.120.0 EGS offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9c6d0);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9ccc0);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407cee63);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd9b1);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140234384);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d96cfa);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d604a0);
+    case GameVersion::H3DX12_STEAM_WOA: {
+        // Hitman 3 3.140.0 EGS offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db07f0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0de0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0eb3);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc01);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402370d4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daae1a);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d810e8);
     } break;
-    case GameVersion::H3DX12_STEAM: {
-        // Hitman 3 3.110.1 Steam offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9b7d0);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9bdc0);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ceb93);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd6f1);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402340c4);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d95dfa);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d658b0);
+    case GameVersion::H3DX12_EGS_WOA: {
+        // Hitman 3 3.140.0 EGS offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db0250);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0840);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0f13);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc71);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140237134);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daa87a);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7acd8);
     } break;
-    case GameVersion::H3DX12_STEAM_ALT: {
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140d9b7d0);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140d9bdc0);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ceb93);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dd6f1);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402340c4);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140d95dfa);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d658b0);
-    }
 
-    case GameVersion::H2DX12:
-    case GameVersion::H2DX11:
-        // TODO: H2 Specific error message
     default:
         MessageBoxA(NULL,
                     std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
                                 "Supported versions are:\n\n"
-                                "- Hitman 3 EGS 3.120.0 (0x62C641F4)\n"
-                                "- Hitman 3 Steam 3.120.0 (0x62C6418B)\n",
-                                "- Hitman 3 Steam 3.120.0 alternate (0x62C5CE14)\n",
+                                "- Hitman 3 Steam 3.140.0 (0x63C7E952)\n"
+                                "- Hitman 3 EGS 3.140.0 (0x63C6130E)\n",
                                 PE::getTimestamp())
                     .c_str(),
                     "Randomizer Mod Failure", NULL);

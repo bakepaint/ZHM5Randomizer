@@ -128,6 +128,7 @@ RandomizationMan::RandomizationMan(
   repo_ = std::make_shared<RandomDrawRepository>(config_);
   default_item_pool_repo = std::make_unique<DefaultItemPoolRepository>(
       config->BaseDirectory() + "\\Retail\\DefaultItemPools.json", repo_);
+  hitman_randomizer::log::info("Read default item pool.");
 
   world_inventory_randomizer =
       std::make_unique<Randomizer>(new IdentityRandomization(config_, repo_));
@@ -137,6 +138,7 @@ RandomizationMan::RandomizationMan(
       std::make_unique<Randomizer>(new IdentityRandomization(config_, repo_));
   stash_item_randomizer =
       std::make_unique<Randomizer>(new IdentityRandomization(config_, repo_));
+  hitman_randomizer::log::info("Created identity randomizers.");
 
   MemoryUtils::DetourCall(
       GameOffsets::instance()->getPushWorldInventoryDetour(),
@@ -151,6 +153,7 @@ RandomizationMan::RandomizationMan(
   MemoryUtils::DetourCall(
       GameOffsets::instance()->getPushStashInventoryDetour(),
       reinterpret_cast<const void *>(&pushItem0Detour<&stash_item_randomizer>));
+  hitman_randomizer::log::info("Code detours applied.");
 }
 
 void RandomizationMan::registerRandomizer(RandomizerSlot slot,
