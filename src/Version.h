@@ -6,6 +6,7 @@ namespace hitman_randomizer {
 enum class GameVersion {
     H3DX12_EGS_WOA,
     H3DX12_STEAM_WOA,
+    H3DX12_STEAM_WOA_VARIANT,
     UNK
 };
 

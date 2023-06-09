@@ -29,33 +29,44 @@ void* getOffsetByName(const std::string& name) {
 // merge). If the new layout turns out to be stable, sig scanning should be reintroduced.
 GameOffsets::GameOffsets() {
     switch(getVersion()) {
-    case GameVersion::H3DX12_STEAM_WOA: {
-        // Hitman 3 3.140.0 EGS offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db07f0);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0de0);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0eb3);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc01);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402370d4);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daae1a);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d810e8);
+    case GameVersion::H3DX12_STEAM_WOA:
+    case GameVersion::H3DX12_STEAM_WOA_VARIANT: {
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db0f70);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1560);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ec6c3);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x14010d051);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x14044e864);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab59a);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d89ff8);
     } break;
+    // case GameVersion::H3DX12_STEAM_WOA_VARIANT: {
+    //     offsets.pPushItem0 = reinterpret_cast<void*>(0x140db07f0);
+    //     offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0de0);
+    //     offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0eb3);
+    //     offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc01);
+    //     offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402370d4);
+    //     offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daae1a);
+    //     offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d810e8);
+    // } break;
+
     case GameVersion::H3DX12_EGS_WOA: {
-        // Hitman 3 3.140.0 EGS offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db0250);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0840);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0f13);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc71);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140237134);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daa87a);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7acd8);
+        // Hitman 3 3.150.1 EGS offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db09c0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0fb0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407ec713);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x14010d0b1);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x14044e8b4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daafea);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d82ce0);
     } break;
+
 
     default:
         MessageBoxA(NULL,
                     std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
                                 "Supported versions are:\n\n"
-                                "- Hitman 3 Steam 3.140.0 (0x63C7E952)\n"
-                                "- Hitman 3 EGS 3.140.0 (0x63C6130E)\n",
+                                "- Hitman 3 Steam 3.150.1 (0x644D2E5D)\n"
+                                "- Hitman 3 EGS 3.150.1 (0x644C7DA6)\n",
                                 PE::getTimestamp())
                     .c_str(),
                     "Randomizer Mod Failure", NULL);
