@@ -8,9 +8,9 @@ namespace hitman_randomizer {
 
 GameVersion getVersion() {
     auto timestamp = PE::getTimestamp();
-    if(timestamp == 0x644C7DA6)
+    if(timestamp == 0x6515054E)
         return GameVersion::H3DX12_EGS_WOA;
-    if(timestamp == 0x644D2E5D)
+    if(timestamp == 0x6539E7E7)
         return GameVersion::H3DX12_STEAM_WOA;
     return GameVersion::UNK;
 }
