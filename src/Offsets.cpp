@@ -65,8 +65,8 @@ GameOffsets::GameOffsets() {
         MessageBoxA(NULL,
                     std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
                                 "Supported versions are:\n\n"
-                                "- Hitman 3 Steam 3.150.1 (0x644D2E5D)\n"
-                                "- Hitman 3 EGS 3.150.1 (0x644C7DA6)\n",
+                                "- Hitman 3 Steam 3.170.0 (0x6539E7E7)\n"
+                                "- Hitman 3 EGS 3.170.0 (0x6515054E)\n",
                                 PE::getTimestamp())
                     .c_str(),
                     "Randomizer Mod Failure", NULL);
