@@ -34,10 +34,10 @@ GameOffsets::GameOffsets() {
         offsets.pPushItem0 = reinterpret_cast<void*>(0x140db1330);
         offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1920);
         offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbb23);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x14010d051);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x14044e864);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab59a);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d89ff8);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e0261);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140236564);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab95a);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d831c8);
     } break;
     // case GameVersion::H3DX12_STEAM_WOA_VARIANT: {
     //     offsets.pPushItem0 = reinterpret_cast<void*>(0x140db07f0);
