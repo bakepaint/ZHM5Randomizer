@@ -39,25 +39,16 @@ GameOffsets::GameOffsets() {
         offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab95a);
         offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d831c8);
     } break;
-    // case GameVersion::H3DX12_STEAM_WOA_VARIANT: {
-    //     offsets.pPushItem0 = reinterpret_cast<void*>(0x140db07f0);
-    //     offsets.pPushItem1 = reinterpret_cast<void*>(0x140db0de0);
-    //     offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407d0eb3);
-    //     offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400dfc01);
-    //     offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402370d4);
-    //     offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140daae1a);
-    //     offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d810e8);
-    // } break;
 
     case GameVersion::H3DX12_EGS_WOA: {
-        // Hitman 3 3.170.0 EGS offsets
+        // Hitman 3 3.170.1 EGS offsets
         offsets.pPushItem0 = reinterpret_cast<void*>(0x140db0c70);
         offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1260);
         offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbba3);
         offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02f1);
         offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365e4);
         offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab29a);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be68);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be80);
     } break;
 
 
@@ -65,8 +56,8 @@ GameOffsets::GameOffsets() {
         MessageBoxA(NULL,
                     std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
                                 "Supported versions are:\n\n"
-                                "- Hitman 3 Steam 3.170.0 (0x6539E7E7)\n"
-                                "- Hitman 3 EGS 3.170.0 (0x6515054E)\n",
+                                "- Hitman 3 Steam 3.170.1 (0x6540ED66)\n"
+                                "- Hitman 3 EGS 3.170.1 (0x6540ED1E)\n",
                                 PE::getTimestamp())
                     .c_str(),
                     "Randomizer Mod Failure", NULL);
