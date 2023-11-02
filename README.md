@@ -132,3 +132,10 @@ ignored_words = []
   Hoarders.
 - Many items unused in the game release are included in randomization. These
   items may or may not work as expected.
+
+
+## Development
+
+To see how to build the Randomizer yourself, read [UPDATING.md][].
+
+[UPDATING.md]: ./UPDATING.MD
