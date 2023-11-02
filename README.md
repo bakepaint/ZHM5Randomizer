@@ -1,15 +1,3 @@
-# THIS MOD DOES NOT WORK WITH FREELANCER MODE.
-
-## I HAVE NO PLANS TO MAKE IT WORK WITH FREELANCER MODE.
-
-## ATTEMPTING TO USE THIS MOD IN FREELANCER MODE MAY CAUSE CRASHES OR LOSS OF ITEMS AND WEAPONS.
-
-## I AM NOT RESPONSIBLE FOR ANY LOSS OF PROGRESS IN FREELANCER MODE DUE TO USE OF THIS MOD.
-
-## DO NOT FILE ISSUES ABOUT FREELANCER MODE.
-
-## DO NOT BUG ME OR ASK ME ANY QUESTIONS ABOUT FREELANCER MODE.
-
 ## ZHM5Randomizer WSO
 
 This is Warriorstar's branch of the excellent ZHM5Randomizer. It includes a
@@ -21,6 +9,12 @@ original README below. To configure `CUSTOM` mode, follow the instructions in
 `hitman_randomizer.toml`, which should have been unzipped in `HITMAN2/Retail`.
 
 [Download]: https://github.com/warriorstar-orion/ZHM5Randomizer/releases/latest
+
+## Disclaimer
+
+**This mod does not work with Freelancer mode.**
+
+I have no plans to make it work with Freelancer mode. Attempting to use this mod in Freelancer mode may cause crashes or loss of items and weapons. I am not responsible for any loss of progress in Freelancer mode due to use of this mod. Do not file issues about Freelancer mode. Do not bug me or ask me any questions about Freelancer mode.
 
 ## How It Works
 
@@ -138,4 +132,4 @@ ignored_words = []
 
 To see how to build the Randomizer yourself, read [UPDATING.md][].
 
-[UPDATING.md]: ./UPDATING.MD
+[UPDATING.md]: ./UPDATING.md
