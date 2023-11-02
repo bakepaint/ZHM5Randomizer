@@ -6,10 +6,10 @@
 #include <unordered_set>
 
 #include "..\thirdparty\json.hpp"
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/Config.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/Scenario.h"
+#include "src/Item.h"
+#include "src/Config.h"
+#include "src/RepositoryID.h"
+#include "src/Scenario.h"
 
 using json = nlohmann::json;
 

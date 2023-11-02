@@ -1,8 +1,8 @@
-#include "ZHM5Randomizer/src/randomizers/npc/Hard.h"
+#include "src/randomizers/npc/Hard.h"
 
-#include "ZHM5Randomizer/src/Console.h"
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/Console.h"
+#include "src/Item.h"
+#include "src/RepositoryID.h"
 
 namespace hitman_randomizer {
 

@@ -1,9 +1,9 @@
-#include "ZHM5Randomizer/src/randomizers/npc/Custom.h"
+#include "src/randomizers/npc/Custom.h"
 
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
-#include "ZHM5Randomizer/src/randomizers/Custom.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/Scenario.h"
+#include "src/DefaultItemPool.h"
+#include "src/randomizers/Custom.h"
+#include "src/RepositoryID.h"
+#include "src/Scenario.h"
 
 namespace hitman_randomizer {
 

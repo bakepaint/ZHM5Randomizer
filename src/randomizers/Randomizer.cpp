@@ -3,13 +3,13 @@
 #include <algorithm>
 #include <random>
 
-#include "ZHM5Randomizer/src/Config.h"
-#include "ZHM5Randomizer/src/Console.h"
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/Offsets.h"
-#include "ZHM5Randomizer/src/RNG.h"
-#include "ZHM5Randomizer/src/Repository.h"
+#include "src/Config.h"
+#include "src/Console.h"
+#include "src/DefaultItemPool.h"
+#include "src/Item.h"
+#include "src/Offsets.h"
+#include "src/RNG.h"
+#include "src/Repository.h"
 
 namespace hitman_randomizer {
 

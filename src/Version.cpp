@@ -1,8 +1,8 @@
-#include "ZHM5Randomizer/src/Version.h"
+#include "src/Version.h"
 
 #include <Windows.h>
 
-#include "ZHM5Randomizer/src/Pe.h"
+#include "src/Pe.h"
 
 namespace hitman_randomizer {
 

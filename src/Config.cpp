@@ -1,4 +1,4 @@
-#include "ZHM5Randomizer/src/Config.h"
+#include "src/Config.h"
 
 #include <Windows.h>
 
@@ -7,12 +7,12 @@
 #include <iostream>
 #include <sstream>
 
-#include "ZHM5Randomizer/src/Console.h"
-#include "ZHM5Randomizer/src/Item.h"
+#include "src/Console.h"
+#include "src/Item.h"
 #include "spdlog/sinks/basic_file_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/spdlog.h"
-#include "third_party/tomlpp/toml.hpp"
+#include "toml.hpp"
 
 namespace hitman_randomizer {
 

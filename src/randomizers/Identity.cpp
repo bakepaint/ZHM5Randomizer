@@ -1,6 +1,6 @@
-#include "ZHM5Randomizer/src/randomizers/Identity.h"
+#include "src/randomizers/Identity.h"
 
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/RepositoryID.h"
 
 namespace hitman_randomizer {
 

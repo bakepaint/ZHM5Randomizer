@@ -1,10 +1,10 @@
 #include <memory>
 #include <vector>
 
-#include "ZHM5Randomizer/src/randomizers/Randomizer.h"
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/Scenario.h"
+#include "src/randomizers/Randomizer.h"
+#include "src/DefaultItemPool.h"
+#include "src/RepositoryID.h"
+#include "src/Scenario.h"
 
 namespace hitman_randomizer {
 

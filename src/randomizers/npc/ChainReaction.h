@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include "ZHM5Randomizer/src/randomizers/Randomizer.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/randomizers/Randomizer.h"
+#include "src/RepositoryID.h"
 
 namespace hitman_randomizer {
 

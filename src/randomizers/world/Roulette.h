@@ -1,11 +1,11 @@
 #ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZERS_WORLD_ROULETTE_H__
 #define __ZHM5RANDOMIZER_SRC_RANDOMIZERS_WORLD_ROULETTE_H__
 
-#include "ZHM5Randomizer/src/Config.h"
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/randomizers/world/Default.h"
-#include "ZHM5Randomizer/src/Scenario.h"
+#include "src/Config.h"
+#include "src/DefaultItemPool.h"
+#include "src/RepositoryID.h"
+#include "src/randomizers/world/Default.h"
+#include "src/Scenario.h"
 
 namespace hitman_randomizer {
 

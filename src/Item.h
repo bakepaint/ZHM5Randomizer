@@ -5,7 +5,7 @@
 #include <sstream>
 #include <ostream>
 
-#include "ZHM5Randomizer/src/Console.h"
+#include "src/Console.h"
 #include "..\thirdparty\json.hpp"
 #include "spdlog/spdlog.h"
 

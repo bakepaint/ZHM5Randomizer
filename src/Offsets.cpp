@@ -1,13 +1,13 @@
-#include "ZHM5Randomizer/src/Offsets.h"
+#include "src/Offsets.h"
 
 #include <Windows.h>
 
 #include <filesystem>
 #include <format>
 
-#include "ZHM5Randomizer/src/Pe.h"
-#include "ZHM5Randomizer/src/SigScanner.h"
-#include "ZHM5Randomizer/src/Signatures.h"
+#include "src/Pe.h"
+#include "src/SigScanner.h"
+#include "src/Signatures.h"
 
 namespace hitman_randomizer {
 

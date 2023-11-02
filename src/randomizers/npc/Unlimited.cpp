@@ -1,7 +1,7 @@
-#include "ZHM5Randomizer/src/randomizers/npc/Unlimited.h"
+#include "src/randomizers/npc/Unlimited.h"
 
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/Item.h"
+#include "src/RepositoryID.h"
 
 namespace hitman_randomizer {
 

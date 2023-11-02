@@ -1,7 +1,7 @@
 #ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZERS_HERO_DEFAULT_H__
 #define __ZHM5RANDOMIZER_SRC_RANDOMIZERS_HERO_DEFAULT_H__
 
-#include "ZHM5Randomizer/src/randomizers/Randomizer.h"
+#include "src/randomizers/Randomizer.h"
 
 namespace hitman_randomizer {
 

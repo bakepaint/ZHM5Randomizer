@@ -1,4 +1,4 @@
-#include "ZHM5Randomizer/src/Console.h"
+#include "src/Console.h"
 
 #include <Windows.h>
 
@@ -12,7 +12,7 @@
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/spdlog.h"
 
-#include "ZHM5Randomizer/src/Config.h"
+#include "src/Config.h"
 
 namespace hitman_randomizer {
 namespace log {

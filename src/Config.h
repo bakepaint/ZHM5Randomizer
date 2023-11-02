@@ -9,7 +9,7 @@
 #include <sstream>
 #include <string>
 
-#include "ZHM5Randomizer/src/Item.h"
+#include "src/Item.h"
 #include "spdlog/spdlog.h"
 
 namespace hitman_randomizer {

@@ -1,14 +1,14 @@
-#include "ZHM5Randomizer/src/randomizers/world/Roulette.h"
+#include "src/randomizers/world/Roulette.h"
 
 #include <string>
 #include <vector>
 #include <unordered_set>
 
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/Scenario.h"
-#include "ZHM5Randomizer/src/randomizers/Custom.h"
+#include "src/DefaultItemPool.h"
+#include "src/Item.h"
+#include "src/RepositoryID.h"
+#include "src/Scenario.h"
+#include "src/randomizers/Custom.h"
 
 
 namespace hitman_randomizer {

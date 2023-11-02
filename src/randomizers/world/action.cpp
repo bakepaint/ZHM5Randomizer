@@ -1,15 +1,15 @@
-#include "ZHM5Randomizer/src/randomizers/world/action.h"
+#include "src/randomizers/world/action.h"
 
 #include <queue>
 #include <random>
 #include <type_traits>
 #include <unordered_map>
 
-#include "ZHM5Randomizer/src/Config.h"
-#include "ZHM5Randomizer/src/Console.h"
-#include "ZHM5Randomizer/src/Repository.h"
-#include "ZHM5Randomizer/src/Scenario.h"
-#include "ZHM5Randomizer/src/DefaultItemPool.h"
+#include "src/Config.h"
+#include "src/Console.h"
+#include "src/Repository.h"
+#include "src/Scenario.h"
+#include "src/DefaultItemPool.h"
 
 namespace hitman_randomizer {
 

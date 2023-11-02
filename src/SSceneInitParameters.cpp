@@ -1,6 +1,6 @@
 #include "SSceneInitParameters.h"
 
-#include "ZHM5Randomizer/src/Console.h"
+#include "src/Console.h"
 
 void SSceneInitParameters::print() const {
   hitman_randomizer::log::info("SSceneInitParameter hash: {}", std::hash<SSceneInitParameters>()(*this));

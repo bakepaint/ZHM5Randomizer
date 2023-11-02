@@ -6,10 +6,10 @@
 #include <type_traits>
 #include <unordered_map>
 
-#include "ZHM5Randomizer/src/Repository.h"
-#include "ZHM5Randomizer/src/Scenario.h"
-#include "ZHM5Randomizer/src/Config.h"
-#include "ZHM5Randomizer/src/Console.h"
+#include "src/Repository.h"
+#include "src/Scenario.h"
+#include "src/Config.h"
+#include "src/Console.h"
 
 namespace hitman_randomizer {
 

@@ -6,9 +6,9 @@
 
 #include "spdlog/spdlog.h"
 
-#include "ZHM5Randomizer/src/Item.h"
-#include "ZHM5Randomizer/src/RNG.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/Item.h"
+#include "src/RNG.h"
+#include "src/RepositoryID.h"
 
 using json = nlohmann::json;
 

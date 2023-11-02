@@ -1,8 +1,8 @@
 #ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZERS_NPC_HARD_H__
 #define __ZHM5RANDOMIZER_SRC_RANDOMIZERS_NPC_HARD_H__
 
-#include "ZHM5Randomizer/src/randomizers/Randomizer.h"
-#include "ZHM5Randomizer/src/Config.h"
+#include "src/randomizers/Randomizer.h"
+#include "src/Config.h"
 
 
 namespace hitman_randomizer {

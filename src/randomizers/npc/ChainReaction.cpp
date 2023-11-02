@@ -1,7 +1,7 @@
-#include "ZHM5Randomizer/src/randomizers/npc/ChainReaction.h"
+#include "src/randomizers/npc/ChainReaction.h"
 
-#include "ZHM5Randomizer/src/RepositoryID.h"
-#include "ZHM5Randomizer/src/Console.h"
+#include "src/RepositoryID.h"
+#include "src/Console.h"
 
 namespace hitman_randomizer {
 

@@ -1,7 +1,7 @@
-#include "ZHM5Randomizer/src/randomizers/npc/Sleepy.h"
+#include "src/randomizers/npc/Sleepy.h"
 
-#include "ZHM5Randomizer/src/Console.h"
-#include "ZHM5Randomizer/src/RepositoryID.h"
+#include "src/Console.h"
+#include "src/RepositoryID.h"
 
 namespace hitman_randomizer {
 

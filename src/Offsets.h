@@ -1,7 +1,7 @@
 #ifndef __ZHM5RANDOMIZER_SRC_OFFSETS_H__
 #define __ZHM5RANDOMIZER_SRC_OFFSETS_H__
 
-#include "ZHM5Randomizer/src/Version.h"
+#include "src/Version.h"
 
 namespace hitman_randomizer {
 

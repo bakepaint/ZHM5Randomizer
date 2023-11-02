@@ -1,10 +1,10 @@
 #ifndef __ZHM5RANDOMIZER_SRC_RANDOMIZATIONMAN_H__
 #define __ZHM5RANDOMIZER_SRC_RANDOMIZATIONMAN_H__
 
-#include "ZHM5Randomizer/src/DefaultItemPoolRepository.h"
-#include "ZHM5Randomizer/src/Offsets.h"
-#include "ZHM5Randomizer/src/Scenario.h"
-#include "ZHM5Randomizer/src/randomizers/Randomizer.h"
+#include "src/DefaultItemPoolRepository.h"
+#include "src/Offsets.h"
+#include "src/Scenario.h"
+#include "src/randomizers/Randomizer.h"
 
 using pushItem0_t = __int64(__fastcall*)(__int64*,
                                          const hitman_randomizer::RepositoryID*,
