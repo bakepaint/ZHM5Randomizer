@@ -8,7 +8,7 @@ heroInventoryRandomizer  = "DEFAULT"
 
 # NPC randomizers: NONE, DEFAULT, UNLIMITED, HARD, SLEEPY, CHAIN_REACTION,
 # CUSTOM
-npcInventoryRandomizer   = "UNLIMITED"
+npcInventoryRandomizer   = "DEFAULT"
 
 # Stash randomizers: NONE, DEFAULT
 stashInventoryRandomizer = "DEFAULT"
