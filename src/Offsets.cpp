@@ -40,17 +40,16 @@ GameOffsets::GameOffsets() {
         offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7ce88);
     } break;
 
-    // case GameVersion::H3DX12_EGS_WOA: {
-    //     // Hitman 3 3.180.0 EGS offsets
-        // offsets.pPushItem0 = reinterpret_cast<void*>(0x140db1150);
-        // offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1740);
-        // offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbba3);
-        // offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02f1);
-        // offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365e4);
-        // offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab77a);
-        // offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be80);
-    // } break;
-
+    case GameVersion::H3DX12_STEAM_WOA: {
+        // Hitman 3 3.190.0 Steam offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db17d0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1dc0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbb03);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e0241);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140236544);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dabdfa);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d831c8);
+    } break;
 
     default:
         MessageBoxA(NULL,
