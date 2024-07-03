@@ -57,6 +57,8 @@ cc_binary(
         "src/randomizers/world/AllExplosives.h",
         "src/randomizers/world/Custom.cpp",
         "src/randomizers/world/Custom.h",
+        "src/randomizers/world/Debug.cpp",
+        "src/randomizers/world/Debug.h",
         "src/randomizers/world/Default.cpp",
         "src/randomizers/world/Default.h",
         "src/randomizers/world/Identity.cpp",

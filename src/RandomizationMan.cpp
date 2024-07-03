@@ -16,6 +16,7 @@
 #include "src/randomizers/world/Action.h"
 #include "src/randomizers/world/AllExplosives.h"
 #include "src/randomizers/world/Custom.h"
+#include "src/randomizers/world/Debug.h"
 #include "src/randomizers/world/Default.h"
 #include "src/randomizers/world/Identity.h"
 #include "src/randomizers/world/Roulette.h"
@@ -67,6 +68,7 @@ std::unordered_map<
         {"ACTION", &createInstance<ActionWorldRandomization>},
         {"CUSTOM", &createInstance<CustomWorldStrategy>},
         {"ROULETTE", &createInstance<RouletteWorldStrategy>},
+        {"DEBUG", &createInstance<WorldDebugRandomization>},
     };
 
 std::unordered_map<
@@ -176,9 +178,6 @@ void RandomizationMan::registerRandomizer(RandomizerSlot slot,
 
 void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
   auto scenario = std::hash<SSceneInitParameters>()(*sip);
-#ifdef DEFAULTPOOLEXPORT
-  DefaultPoolExport::loadScenario(scenario);
-#endif
 
   configureRandomizerCollection();
 
@@ -187,15 +186,8 @@ void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
   RNG::inst().seed(seed);
 
   auto default_pool = default_item_pool_repo->getDefaultPool(scenario);
-#ifdef DEFAULTPOOLEXPORT
-  world_inventory_randomizer =
-      std::make_unique<Randomizer>(new IdentityRandomization);
-  world_inventory_randomizer->initialize(scenario, default_pool);
-  npc_item_randomizer->disable();
-  hero_inventory_randomizer->disable();
-  stash_item_randomizer->disable();
-#else
-  if (default_pool != nullptr) {
+
+  if (default_pool != nullptr || config_->world_inventory_randomizer() == "DEBUG") {
     world_inventory_randomizer->initialize(scenario, default_pool);
     npc_item_randomizer->initialize(scenario, default_pool);
     hero_inventory_randomizer->initialize(scenario, default_pool);
@@ -206,7 +198,6 @@ void RandomizationMan::initializeRandomizers(const SSceneInitParameters *sip) {
     hero_inventory_randomizer->disable();
     stash_item_randomizer->disable();
   }
-#endif
 }
 
 }  // namespace hitman_randomizer

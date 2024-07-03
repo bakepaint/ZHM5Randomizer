@@ -30,25 +30,25 @@ void* getOffsetByName(const std::string& name) {
 GameOffsets::GameOffsets() {
     switch(getVersion()) {
     case GameVersion::H3DX12_EGS_WOA: {
-        // Hitman 3 3.180.0 EGS offsets
-        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db1150);
-        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1740);
-        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbba3);
-        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02f1);
-        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365e4);
-        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab77a);
-        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be80);
+        // Hitman 3 3.190.0 EGS offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db1130);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1720);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbb83);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02d1);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365c4);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab75a);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7ce88);
     } break;
 
     // case GameVersion::H3DX12_EGS_WOA: {
     //     // Hitman 3 3.180.0 EGS offsets
-    //     offsets.pPushItem0 = reinterpret_cast<void*>(0x140db0c70);
-    //     offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1260);
-    //     offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbba3);
-    //     offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02f1);
-    //     offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365e4);
-    //     offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab29a);
-    //     offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be80);
+        // offsets.pPushItem0 = reinterpret_cast<void*>(0x140db1150);
+        // offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1740);
+        // offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbba3);
+        // offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e02f1);
+        // offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x1402365e4);
+        // offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dab77a);
+        // offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d7be80);
     // } break;
 
 

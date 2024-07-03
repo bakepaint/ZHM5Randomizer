@@ -18,12 +18,12 @@ DefaultWorldRandomization::randomize(const RepositoryID *in_out_ID) {
   if (repo_->contains(*in_out_ID) && item_queue.size()) {
     const RepositoryID *id = item_queue.front();
     item_queue.pop_front();
-    log::info(
-        "DefaultWorldRandomization: {} ({}) -> {} ({})",
-        repo_->getItem(*in_out_ID)->string().c_str(),
-        repo_->getItem(*in_out_ID)->GetId().c_str(),
-        repo_->getItem(*id)->string().c_str(),
-        repo_->getItem(*id)->GetId().c_str());
+    // log::info(
+    //     "DefaultWorldRandomization: {} ({}) -> {} ({})",
+    //     repo_->getItem(*in_out_ID)->string().c_str(),
+    //     repo_->getItem(*in_out_ID)->GetId().c_str(),
+    //     repo_->getItem(*id)->string().c_str(),
+    //     repo_->getItem(*id)->GetId().c_str());
     return id;
   } else {
     if (!item_queue.size()) {
