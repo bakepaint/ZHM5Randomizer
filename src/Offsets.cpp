@@ -51,11 +51,22 @@ GameOffsets::GameOffsets() {
         offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d831c8);
     } break;
 
+    case GameVersion::H3DX12_STEAM_WOA_VARIANT: {
+        // Hitman 3 3.190.0 Steam variant offsets
+        offsets.pPushItem0 = reinterpret_cast<void*>(0x140db17d0);
+        offsets.pPushItem1 = reinterpret_cast<void*>(0x140db1dc0);
+        offsets.pPushHeroInventoryDetour = reinterpret_cast<void*>(0x1407dbb03);
+        offsets.pPushNPCInventoryDetour = reinterpret_cast<void*>(0x1400e0241);
+        offsets.pPushStashInventoryDetour = reinterpret_cast<void*>(0x140236544);
+        offsets.pPushWorldInventoryDetour = reinterpret_cast<void*>(0x140dabdfa);
+        offsets.pZEntitySceneContext_LoadScene = reinterpret_cast<void**>(0x141d831c8);
+    } break;
+
     default:
         MessageBoxA(NULL,
                     std::format("The Randomizer Mod does not recognize this version of Hitman with PE timestamp {:X}.\n"
                                 "Supported versions are:\n\n"
-                                "- Hitman 3 Steam 3.190.0 (0x667E6CAA)\n"
+                                "- Hitman 3 Steam 3.190.0 (0x667E6CAA) or (0x667E69CF)\n"
                                 "- Hitman 3 EGS 3.190.0 (0x666298F6)\n",
                                 PE::getTimestamp())
                     .c_str(),

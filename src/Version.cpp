@@ -12,6 +12,8 @@ GameVersion getVersion() {
         return GameVersion::H3DX12_EGS_WOA;
     if(timestamp == 0x667E6CAA)
         return GameVersion::H3DX12_STEAM_WOA;
+    if(timestamp == 0x667E69CF)
+        return GameVersion::H3DX12_STEAM_WOA_VARIANT;
 
     return GameVersion::UNK;
 }
