@@ -1,3 +1,6 @@
+> [!WARNING]
+> I am no longer updating the Randomizer mod or providing support for it. Anybody is free to fork this repository and continue updating it. I have provided extensive documentation on updating it for new release of Hitman 3 in [UPDATING.md][]. Thank you for playing the mod.
+
 ## ZHM5Randomizer WSO
 
 This is Warriorstar's branch of the excellent ZHM5Randomizer. It includes a
