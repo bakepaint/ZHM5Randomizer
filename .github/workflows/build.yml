@@ -1,0 +1,22 @@
+on:
+    workflow_dispatch:
+    push:
+      branches:
+      - main
+
+jobs:
+    build:
+      name: Build the Randomizer
+      runs-on: windows-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+      
+        - name: Build dll
+          run: bazel build :DINPUT8.dll
+  
+        - name: Upload a Build Artifact
+          uses: actions/upload-artifact@v4.3.3
+          with:
+            name: DINPUT8.dll
+            path: bazel-bin/DINPUT8.dll
