@@ -1,6 +1,7 @@
 #ifndef __ZHM5RANDOMIZER_SRC_SIGNATURES_H__
 #define __ZHM5RANDOMIZER_SRC_SIGNATURES_H__
 
+#include <string>
 #include <unordered_map>
 #include <vector>
 
